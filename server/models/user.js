@@ -26,6 +26,6 @@ let userSchema = new Schema ({
    securityQuestions: [securityQuestions],
    date_created: {type: Date, default: new Date()},
    date_modified: {type: Date}
- }, { collection: 'user'});
+ }, { collection: 'users'});
 
 module.exports = mongoose.model('User', userSchema);
