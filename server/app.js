@@ -47,8 +47,12 @@ mongoose.connect(conn, {
 }); // end mongoose connection
 
 /**
- * API(s) go here...
+ * APIs
  */
+
+app.use('/api/security-questions', securityQuestionApi);
+app.use('/api/users', UserApi);
+app.use('/api/session/signin', SignInApi);
 
 /**
  * Create and start server
