@@ -55,7 +55,30 @@ router.get('', async(req, res) => {
   });
 
 
- //find all security questions by id
+//find security questions by id
+router.get('/:_id', async(req, res) => {
+  try {
+    securityQuestion.findOne({'_id': req.params._id}, function(err, question) {
+
+      if (err) {
+        console.log(err);
+
+        const mongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
+
+        res.status(500).send(mongoDbErrorResponse.toObject());
+      } else {
+
+        console.log(question);
+        res.json(question);
+      }
+    })
+  } catch (e) {
+    console.log(e);
+
+    const errorCatchResponse = new ErrorResponse('500', 'Internal server error', err)
+    res.status(500).send(errorCatchResponse.toObject());
+  }
+});
 
  //create security question
 
