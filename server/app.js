@@ -55,8 +55,8 @@ mongoose.connect(conn, {
  */
 
 app.use('/api/security-questions', securityQuestionApi);
-app.use('/api/users', UserApi);
-app.use('/api/session/signin', SignInApi);
+//app.use('/api/users', UserApi);
+//app.use('/api/session/signin', SignInApi);
 
 /**
  * Create and start server
