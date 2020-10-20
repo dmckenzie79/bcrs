@@ -1,3 +1,10 @@
+/* ============================================
+ ; Title:  app.js
+ ; Author: Zach Dahir, Jeff Lintel, Diandra McKenzie
+ ; Date:   19 October 2020
+ ; Description: app js for server logic and APIs
+ ===========================================*/
+
 /**
  * Require statements
  */
