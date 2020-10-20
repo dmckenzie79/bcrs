@@ -9,6 +9,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { SessionGuard } from './shared/guard/session.guard';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 const routes: Routes = [
   {
@@ -17,7 +20,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [SessionGuard]
+      }
+    ]
+  },
+  {
+    path: 'session',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'sign-in',
+        component: SignInComponent
       }
     ]
   }
