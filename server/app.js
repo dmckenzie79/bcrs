@@ -15,6 +15,10 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 
+const securityQuestionApi = require('./routes/security-questions-api'); //import the security questions API
+const UserApi = require('./routes/user-api'); //import the User API
+const SignInApi = require('./routes/signin-api'); //import the Sign in API
+
 /**
  * App configurations
  */
