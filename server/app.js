@@ -43,7 +43,7 @@ mongoose.connect(conn, {
 }).then(() => {
   console.debug(`Connection to the database instance was successful`);
 }).catch(err => {
-  console.log(`MongoDB Error: ${err.message}`)
+  console.log(`MongoDB Error: ${err.message}`);
 }); // end mongoose connection
 
 /**
@@ -58,5 +58,5 @@ app.use('/api/session/signin', SignInApi);
  * Create and start server
  */
 http.createServer(app).listen(port, function() {
-  console.log(`Application started and listening on port: ${port}`)
+  console.log(`Application started and listening on port: ${port}`);
 }); // end http create server function
