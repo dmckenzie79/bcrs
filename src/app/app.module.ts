@@ -18,9 +18,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { SessionGuard } from './shared/guard/session.guard';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,10 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule
+
   ],
-  providers: [],
+  providers: [SessionGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

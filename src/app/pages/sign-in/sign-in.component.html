@@ -8,9 +8,6 @@
 
 <div fxLayout="column">
     <div fxFlex>
-
-      
-
       <mat-card class="mat-elevation-z8 sign-in-container">
 
         <mat-card-title>
@@ -21,24 +18,31 @@
 
         <mat-card-content>
 
-        <form class="form" [formGroup]="form" (ngSubmit)="signIn(); form.reset();">
+        <form class="form" [formGroup]="form" (ngSubmit)="form.reset();">
+          <div>
             <span>Username:</span>
               <input matInput
-                    [formControl]=" "
+
                     placeholder="username"
                     class="input" />
+          </div>
 
-            <span>Password:</span>
+
+            <div><span>Password:</span>
               <input matInput
-                    [formControl]=" "
+
                     placeholder="password"
                     class="input" />
+            </div>
 
+          <div>
             <button class="submit" type="submit" mat-raised-button color="#B39DDB" [disabled]="!form.valid">Sign in</button>
+          </div>
 
-            <a href=" " color="#C4C4C4">Forgot Password</a>
-
-            <a href=" " color="#80DEEA">Create an Account</a>
+            <div><a href=" " color="#C4C4C4">Forgot Password</a></div>
+<br />
+<br />
+            <div><a href=" " color="#80DEEA">Create an Account</a></div>
         </form>
       </mat-card-content>
       </mat-card>

@@ -1,0 +1,17 @@
+.sign-in-container{
+  margin: 10% auto;
+  width: 600px;
+}
+
+.sign-in-container > mat-card-title, mat-card-subtitle, h1, .warning, .form {
+  text-align: center;
+}
+
+.input {
+  width: 350px;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10%;
+}
+
+
