@@ -25,7 +25,7 @@ const router= express.Router();
 */
 router.get('', async(req, res) => {
   try {
-        securityQuestion.findOne({'text': req.params.text}, 'isDisabled: false', function(err, question) {
+        securityQuestion.find({'text': req.params.text}, 'isDisabled: false', function(err, question) {
 
         if (err) {
           console.log(err);

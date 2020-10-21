@@ -1,22 +1,34 @@
-/* ============================================
- ; Title:  session.guard.ts
- ; Author: Diandra McKenzie
- ; Date:   20 October 2020
- ; Description: Session Guard file
- ===========================================*/
+/**
+ * Title: session.guard.ts
+ * Author: Diandra McKenzie
+ * Date: 21 October 2020
+ * Description: Auth Guard file
+ */
 
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionGuard implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+
+  constructor(private router: Router, private cookieServer: CookieService) {
+  }
+  canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const sessionUser = this.cookieServer.get('session_user');
+
+    if (sessionUser) {
+      return true;
+  } else {
+
+    this.router.navigate(['/session/sign-in']);
+
+    return false;
   }
 
 }
+
+}
+

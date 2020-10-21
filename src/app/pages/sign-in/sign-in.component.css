@@ -3,15 +3,36 @@
   width: 600px;
 }
 
-.sign-in-container > mat-card-title, mat-card-subtitle, h1, .warning, .form {
+.sign-in-container > mat-card-title, mat-card-subtitle, .form {
   text-align: center;
+  padding: 2%;
 }
 
 .input {
-  width: 350px;
+  width: 200px;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 10%;
+  border-radius: 5px;
 }
 
+.submit {
+  background-color: #B39DDB;
+  margin-bottom: 30px;
+  font-size: 18px;
+  width: 50px;
+}
 
+.label {
+  font-size: 20px;
+  padding-right: 5%;
+}
+
+.password a {
+  color: #C4C4C4;
+  width: 60 px;
+}
+
+.account a {
+  color: #80DEEA;
+}
