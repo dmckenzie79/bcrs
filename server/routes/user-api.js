@@ -39,7 +39,7 @@ router.get('/:id', async(req, res) => {
         const findByIdResponse = new BaseResponse('200', 'Query successful', user);
         res.json(findByIdResponse.toObject());
       }
-    })
+    });
   }
   catch(e)
   {
@@ -47,7 +47,7 @@ router.get('/:id', async(req, res) => {
     const findByIdCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
     res.status(500).send(findByIdCatchErrorResponse.toObject());
   }
-})
+});
 
  /**
  * API: createUser
@@ -77,7 +77,7 @@ router.post('/', async(req, res) => {
         const createUserResponse = new BaseResponse(200, 'Query successful', user);
         res.json(createUserResponse.toObject());
       }
-    })
+    });
   } catch (e) {
     console.log(e);
     const createUserCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
@@ -116,9 +116,9 @@ router.post('/', async(req, res) => {
              const savedUserResponse = new BaseResponse('200', 'Query successful', savedUser);
              res.json(savedUserResponse.toObject());
            }
-         })
+         });
        }
-     })
+     });
    }
    catch(e)
    {
@@ -126,7 +126,7 @@ router.post('/', async(req, res) => {
      const deleteUserCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
      res.status(500).send(deleteUserCatchErrorResponse.toObject());
    }
- })
+ });
 
 
 
