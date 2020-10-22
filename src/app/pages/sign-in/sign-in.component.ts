@@ -1,6 +1,6 @@
 /* ============================================
  ; Title:  sign-in.component.ts
- ; Author: DProfessor Krasso
+ ; Author: Professor Krasso
  ; Date:   21 October 2020
  ; Modified By: Diandra McKenzie
  ; Description: sign-in component
