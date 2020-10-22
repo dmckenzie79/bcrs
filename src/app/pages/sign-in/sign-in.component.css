@@ -30,9 +30,12 @@
 
 .password a {
   color: #C4C4C4;
-  width: 60 px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .account a {
   color: #80DEEA;
+  font-size: 18px;
+  font-weight: 500;
 }
