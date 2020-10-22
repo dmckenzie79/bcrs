@@ -10,7 +10,7 @@
  * Require statements
 */
 const express = require('express');
-const securityQuestion = require('../models/security-question');
+const SecurityQuestion = require('../models/security-question');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
@@ -26,23 +26,26 @@ const router= express.Router();
  * API: findAllSecurityQuestions
  * Returns a list of JSON security question objects
 */
-router.get('', async(req, res) => {
+router.get('/', async(req, res) => {
   try {
-        securityQuestion.find({'text': req.params.text}, 'isDisabled: false', function(err, question) {
+        SecurityQuestion.find({})
+          .where('isDisabled') //query where disable equals false
+          .equals(false)
+          .exec(function(err, securityQuestions) { //execute the query
 
         if (err) {
           console.log(err);
 
-          const mongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
+          const findAllMongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
 
-          res.status(500).send(mongoDbErrorResponse.toObject());
+          res.status(500).send(findAllMongoDbErrorResponse.toObject());
 
         } else {
-          console.log(question);
+          console.log(securityQuestions);
 
-          const securityQuestionResponse = new BaseResponse('200', 'Query successful', question);
+          const findAllResponse = new BaseResponse('200', 'Query successful', securityQuestions);
 
-          res.json(securityQuestionResponse.toObject());
+          res.json(findAllResponse.toObject());
         }
       });
 
@@ -50,9 +53,9 @@ router.get('', async(req, res) => {
 
       console.log(e);
 
-      const errorCatchResponse = new ErrorResponse('500', 'Internal server error', e.message);
+      const findAllErrorCatchResponse = new ErrorResponse('500', 'Internal server error', e.message);
 
-          res.status(500).send(errorCatchResponse.toObject());
+          res.status(500).send(findAllErrorCatchResponse.toObject());
 
       }
   });
@@ -100,7 +103,7 @@ router.get('', async(req, res) => {
 
         const question = {
           text: req.body.text
-        }
+        };
 
         securityQuestion.push(question);
         securityQuestion.save(function(err, updatedQuestion) {
@@ -118,9 +121,9 @@ router.get('', async(req, res) => {
 
             res.json(createSecurityQuestionOnSaveSuccessResponse.toObject());
           }
-        })
+        });
        }
-     })
+     });
    } catch (e) {
      console.log(e);
 
@@ -136,10 +139,10 @@ router.get('', async(req, res) => {
  * Updates a JSON security question object
 */
 
-router.put('/:_id', async(req, res) => {
+router.put('/:id', async(req, res) => {
   try {
 
-   securityQuestion.findOne({'_id': req.params._id}, function(err, question) {
+   SecurityQuestion.findOne({'_id': req.params.id}, function(err, securityQuestion) {
 
      if (err) {
        console.log(err);
@@ -148,13 +151,13 @@ router.put('/:_id', async(req, res) => {
 
        res.status(500).send(updateSecurityQuestionMongoDbErrorResponse.toObject());
      } else {
-         console.log(question);
+         console.log(securityQuestion);
 
-         question.set({
-           text: req.body.text,
+         securityQuestion.set({
+           text: req.body.text
          });
 
-         question.save(function(err, updatedQuestion) {
+         securityQuestion.save(function(err, savedSecurityQuestion) {
            if (err) {
              console.log(err);
 
@@ -162,9 +165,9 @@ router.put('/:_id', async(req, res) => {
 
              res.status(500).send(updateSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
            } else {
-             console.log(updatedQuestion);
+             console.log(savedSecurityQuestion);
 
-             const updateSecurityQuestionOnSaveSuccessResponse = new BaseResponse('200', 'Update Successful', updatedQuestion);
+             const updateSecurityQuestionOnSaveSuccessResponse = new BaseResponse('200', 'Update Successful', savedSecurityQuestion);
 
              res.json(updateSecurityQuestionOnSaveSuccessResponse.toObject());
            }

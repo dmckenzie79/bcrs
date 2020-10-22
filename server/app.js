@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 
 const securityQuestionApi = require('./routes/security-questions-api'); //import the security questions API
 const UserApi = require('./routes/user-api'); //import the User API
-const SignInApi = require('./routes/signin-api'); //import the Sign in API
+const SessionApi = require('./routes/session-api'); //import the session API
 
 /**
  * App configurations
@@ -55,8 +55,8 @@ mongoose.connect(conn, {
  */
 
 app.use('/api/security-questions', securityQuestionApi);
-//app.use('/api/users', UserApi);
-//app.use('/api/session/signin', SignInApi);
+app.use('/api/users', UserApi);
+app.use('/api/session/signin', SessionApi);
 
 /**
  * Create and start server
