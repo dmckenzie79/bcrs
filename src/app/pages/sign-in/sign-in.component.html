@@ -1,0 +1,54 @@
+<!--
+ * Title: sign-in.component.html
+ * Author: Professor Krasso
+ * Date: 23 September 2020
+ * Modified By: Diandra McKenzie
+ * Description: Sign-in component html file
+-->
+
+<div fxLayout="column">
+    <div fxFlex>
+      <mat-card class="mat-elevation-z8 sign-in-container">
+
+        <mat-card-title>
+          Sign-in
+        </mat-card-title>
+
+        <br />
+
+        <mat-card-content>
+
+        <form class="form" [formGroup]="form" (ngSubmit)="signIn(); form.reset();" #loginForm="ngForm">
+          <div>
+            <label for="User name" class="label">Username:</label>
+              <input
+                    type="text"
+                    matInput
+                    [formControl]="form.controls['userName']"
+                    placeholder="Enter Username"
+                    class="input" />
+          </div>
+
+
+            <div><label for="password" class="label">Password:</label>
+              <input
+                    type="text"
+                    matInput
+                    [formControl]="form.controls['password']"
+                    placeholder="password"
+                    class="input" />
+            </div>
+
+          <mat-card-actions>
+            <button class="submit" type="submit" mat-raised-button>Sign in</button>
+          </mat-card-actions>
+
+            <div class="password"><a routerLink="/">Forgot Password</a></div>
+<br />
+<br />
+            <div class="account"><a routerLink="/">Create an Account</a></div>
+        </form>
+      </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

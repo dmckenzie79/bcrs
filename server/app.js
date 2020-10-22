@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 
 const securityQuestionApi = require('./routes/security-questions-api'); //import the security questions API
 const UserApi = require('./routes/user-api'); //import the User API
-const SignInApi = require('./routes/signin-api'); //import the Sign in API
+const SessionApi = require('./routes/session-api'); //import the session API
 
 /**
  * App configurations
@@ -34,8 +34,8 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
  */
 const port = 3000; // server port
 
-// TODO: This line will need to be replaced with your actual database connection string
-const conn = 'mongodb+srv://superadmin:s3cret@cluster0-lujih.mongodb.net/bcrs?retryWrites=true&w=majority';
+// actual database connection string
+const conn = 'mongodb+srv://bcrs_admin:8JvEBB2ghNwslIYi@cluster0.wcj86.mongodb.net/bcrs?retryWrites=true&w=majority';
 
 /**
  * Database connection
@@ -55,8 +55,8 @@ mongoose.connect(conn, {
  */
 
 app.use('/api/security-questions', securityQuestionApi);
-//app.use('/api/users', UserApi);
-//app.use('/api/session/signin', SignInApi);
+app.use('/api/users', UserApi);
+app.use('/api/session/signin', SessionApi);
 
 /**
  * Create and start server

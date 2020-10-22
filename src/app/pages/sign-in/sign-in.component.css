@@ -1,0 +1,41 @@
+.sign-in-container{
+  margin: 10% auto;
+  width: 600px;
+}
+
+.sign-in-container > mat-card-title, mat-card-subtitle, .form {
+  text-align: center;
+  padding: 2%;
+}
+
+.input {
+  width: 200px;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10%;
+  border-radius: 5px;
+}
+
+.submit {
+  background-color: #B39DDB;
+  margin-bottom: 30px;
+  font-size: 18px;
+  width: 120px;
+}
+
+.label {
+  font-size: 20px;
+  padding-right: 5%;
+}
+
+.password a {
+  color: #C4C4C4;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.account a {
+  color: #80DEEA;
+  font-size: 18px;
+  font-weight: 500;
+}

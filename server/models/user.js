@@ -6,15 +6,15 @@
  */
 
 const mongoose = require('mongoose');
+const userRoleSchema = require('../schemas/user-role');
 const Schema = mongoose.Schema;
-const securityQuestion = require('./security-question');
+const selectedSecurityQuestionSchema = require('../schemas/selected-security-question');
 
 /**
  * user schema, sprint 1
  */
 
 let userSchema = new Schema ({
-   _id: {type: String},
    userName: {type: String, required:true, unique: true, dropDups: true},
    password: {type: String, required: true},
    firstName: {type: String},
@@ -23,8 +23,8 @@ let userSchema = new Schema ({
    address: {type: String},
    email: {type: String},
    isDisabled: {type: Boolean, default: false},
-   role: {type: String, default: 'standard'},
-   securityQuestions: [securityQuestion],
+   role: userRoleSchema,
+   selectedSecurityQuestions: [selectedSecurityQuestionSchema],
    date_created: {type: Date, default: new Date()},
    date_modified: {type: Date}
  }, { collection: 'users'});
