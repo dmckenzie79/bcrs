@@ -76,7 +76,7 @@ router.get('/', async(req, res) => {
 
         const question = {
           text: req.body.text
-        }
+        };
 
         securityQuestion.push(question);
         securityQuestion.save(function(err, updatedQuestion) {
@@ -94,9 +94,9 @@ router.get('/', async(req, res) => {
 
             res.json(createSecurityQuestionOnSaveSuccessResponse.toObject());
           }
-        })
+        });
        }
-     })
+     });
    } catch (e) {
      console.log(e);
 
@@ -104,7 +104,7 @@ router.get('/', async(req, res) => {
 
      res.status(500).send(createQuestionCatchErrorResponse.toObject());
    }
- })
+ });
 
 
 /**
