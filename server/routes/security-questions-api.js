@@ -15,6 +15,8 @@ const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
 const securityQuestionSchema = require('../models/security-question');
+const { bluebird } = require('bluebird');
+const { create } = require('../models/security-question');
 
 
 const router= express.Router();
@@ -60,9 +62,34 @@ router.get('', async(req, res) => {
 
  //create security question
 
- router.post(':/_id', async(req, res) => {
+ router.post('/', async(req, res) => {
+   try
+   {
+     let newSecurityQuestion = {
+       text: req.body.text
+     };
+
+     securityQuestion.create(newSecurityQuestion, function(err, securityQuestion) {
+       if(err) {
+         console.log(err);
+         const createSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
+         res.status(500).send(createSecurityQuestionMongoDbErrorResponse.toObject());
+       } else {
+         console.log(securityQuestion);
+         const createSecurityQuestionResponse = new BaseResponse('200', 'Query successful', securityQuestion);
+         res.json(createSecurityQuestionResponse.toObject());
+       }
+     })
+   } catch(e) {
+     console.log(e);
+     const createSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+     res.status(500).send(createSecurityQuestionCatchErrorResponse.toObject());
+   }
+ })
+
+ /*router.post(':/', async(req, res) => {
    try {
-     securityQuestion.findOne({'_id': req.params._id}, function(err, question) {
+     SecurityQuestion.findOne({'_id': req.params._id}, function(err, question) {
        if (err) {
          console.log(err);
 
@@ -102,7 +129,7 @@ router.get('', async(req, res) => {
      res.status(500).send(createQuestionCatchErrorResponse.toObject());
    }
  })
-
+*/
 
 /**
  * API: updateSecurityQuestion
