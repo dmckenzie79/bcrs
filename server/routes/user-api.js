@@ -21,9 +21,26 @@ const router= express.Router();
 const saltRounds = 10; //default salt rounds for hashing algorithm
 
  //find all
+router.get('/', async(req, res) => {
+  try {
+    User.find({}).where('isDisabled').equals(false).exec(function(err, users) {
+      if (err) {
+        console.log(err);
+        const userFindAllMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        res.status(500).send(userFindAllMongodbErrorResponse.toObject());
+      } else {
+        console.log(users);
+        const userFindAllSuccessResponse = new BaseResponse(200, 'Find All was Successful', users);
+        res.json(userFindAllSuccessResponse.toObject());
+      }
+    })
+  } catch (e) {
+    const userFindAllCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
+    res.status(500).send(userFindAllCatchErrorResponse.toObject());
+  }
+});
 
  //find all users by id
-
 router.get('/:id', async(req, res) => {
   try
   {
@@ -39,7 +56,7 @@ router.get('/:id', async(req, res) => {
         const findByIdResponse = new BaseResponse('200', 'Query successful', user);
         res.json(findByIdResponse.toObject());
       }
-    })
+    });
   }
   catch(e)
   {
@@ -47,7 +64,7 @@ router.get('/:id', async(req, res) => {
     const findByIdCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
     res.status(500).send(findByIdCatchErrorResponse.toObject());
   }
-})
+});
 
  /**
  * API: createUser
@@ -77,7 +94,7 @@ router.post('/', async(req, res) => {
         const createUserResponse = new BaseResponse(200, 'Query successful', user);
         res.json(createUserResponse.toObject());
       }
-    })
+    });
   } catch (e) {
     console.log(e);
     const createUserCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
@@ -87,7 +104,40 @@ router.post('/', async(req, res) => {
 
 
  //update user
+ router.put('/:id', async(req, res) => {
+   try {
+     User.findOne({'_id': req.params.id}, function(err, user) {
+       if (err) {
+         console.log(err);
+         const userUpdateMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+         res.status(500).send(userUpdateMongodbErrorResponse.toObject());
+       } else {
+         console.log(user);
 
+         user.set({
+           firstName: req.body.firstName,
+           lastName: req.body.lastName,
+           phoneNumber: req.body.phoneNumber,
+           address: req.body.address,
+           email: req.body.email
+         })
+
+         user.save(function(err, savedUser) {
+           if (err) {
+             console.log(err);
+             const saveUserMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+             res.status(500).send(saveUserMongodbErrorResponse.toObject());
+           }
+         })
+       }
+     })
+   }
+   catch (e) {
+     console.log(e);
+     const updateUserCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
+     res.status(500).send(updateUserCatchErrorResponse.toObject());
+   }
+ })
  //"delete" user
 
  router.delete('/:id', async(req, res) => {
@@ -116,9 +166,9 @@ router.post('/', async(req, res) => {
              const savedUserResponse = new BaseResponse('200', 'Query successful', savedUser);
              res.json(savedUserResponse.toObject());
            }
-         })
+         });
        }
-     })
+     });
    }
    catch(e)
    {
@@ -126,7 +176,7 @@ router.post('/', async(req, res) => {
      const deleteUserCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
      res.status(500).send(deleteUserCatchErrorResponse.toObject());
    }
- })
+ });
 
 
 
