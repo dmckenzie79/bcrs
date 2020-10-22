@@ -1,6 +1,6 @@
 /* ============================================
  ; Title:  security-question.js
- ; Author: Jeff Lintel
+ ; Author: Jeff Lintel, Zach Dahir
  ; Date:   19 October 2020
  ; Description: security questions model
  ===========================================*/
