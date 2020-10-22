@@ -14,6 +14,7 @@ const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
+//const { try } = require('bluebird');
 
 
 const router= express.Router();
@@ -22,6 +23,31 @@ const saltRounds = 10; //default salt rounds for hashing algorithm
  //find all
 
  //find all users by id
+
+router.get('/:id', async(req, res) => {
+  try
+  {
+    User.findOne({'_id': req.params.id}, function(err, user) {
+      if (err) {
+        console.log(err);
+        const findByIdMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error',err);
+        res.status(500).send(findByIdMongoDbErrorResponse.toObject())
+      }
+      else
+      {
+        console.log(user);
+        const findByIdResponse = new BaseResponse('200', 'Query successful', user);
+        res.json(findByIdResponse.toObject());
+      }
+    })
+  }
+  catch(e)
+  {
+    console.log(e);
+    const findByIdCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+    res.status(500).send(findByIdCatchErrorResponse.toObject());
+  }
+})
 
  /**
  * API: createUser
@@ -60,9 +86,49 @@ router.post('/', async(req, res) => {
   });
 
 
- //update user question
+ //update user
 
- //"delete" user question
+ //"delete" user
+
+ router.delete('/:id', async(req, res) => {
+   try
+   {
+     User.findOne({'_id': req.params.id}, function(err, user) {
+       if (err) {
+         console.log(err);
+         const deleteUserMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
+         res.status(500).send(deleteUserMongoDbErrorResponse.toObject());
+       }
+       else
+       {
+         console.log(user);
+         user.set({isDisabled: true});
+
+         user.save(function(err, savedUser) {
+           if (err) {
+             console.log(err);
+             const savedUserMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
+             res.status(500).send(savedUserMongoDbErrorResponse.toObject());
+           }
+           else
+           {
+             console.log(savedUser);
+             const savedUserResponse = new BaseResponse('200', 'Query successful', savedUser);
+             res.json(savedUserResponse.toObject());
+           }
+         })
+       }
+     })
+   }
+   catch(e)
+   {
+     console.log(e);
+     const deleteUserCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+     res.status(500).send(deleteUserCatchErrorResponse.toObject());
+   }
+ })
+
+
 
 
  module.exports = router;
