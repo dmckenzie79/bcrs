@@ -44,7 +44,9 @@ router.get('/', async(req, res) => {
 
  router.get('/:id', async(req, res) => {
   try {
-    User.findOne({'_id': req.params._id}, function(err, question) {
+    User.findOne({'_id': req.params.id}, function(err, user) {
+
+      console.log(req.params.id)
 
       if (err) {
         console.log(err);
@@ -54,8 +56,8 @@ router.get('/', async(req, res) => {
         res.status(500).send(mongoDbErrorResponse.toObject());
       } else {
 
-        console.log(question);
-        res.json(question);
+        console.log(user);
+        res.json(user);
       }
     })
   } catch (e) {
