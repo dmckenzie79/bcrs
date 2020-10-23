@@ -75,7 +75,7 @@ router.post('/', async(req, res) => {
 
     //user object
     let newUser = {
-      userName: res.body.userName,
+      userName: req.body.userName,
       password: hashedPassword,
       firstName: req.body.firstName,
       lastName: req.body.lastName,

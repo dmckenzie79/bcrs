@@ -95,7 +95,7 @@ router.get('/:id', async(req, res) => {
        text: req.body.text
      };
 
-     securityQuestion.create(newSecurityQuestion, function(err, securityQuestion) {
+     SecurityQuestion.create(newSecurityQuestion, function(err, securityQuestion) {
        if(err) {
          console.log(err);
          const createSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
