@@ -5,3 +5,8 @@
  ; Modified By: Diandra McKenzie
  ; Description: Security Question Interface
  ===========================================*/
+
+export interface SecurityQuestion {
+  _id: string;
+  text: string;
+}
