@@ -64,7 +64,7 @@ router.get('/', async(req, res) => {
 //find security questions by id
 router.get('/:id', async(req, res) => {
   try {
-    securityQuestion.findOne({'_id': req.params._id}, function(err, question) {
+    SecurityQuestion.findOne({'_id': req.params._id}, function(err, question) {
 
       if (err) {
         console.log(err);
@@ -102,7 +102,7 @@ router.get('/:id', async(req, res) => {
          res.status(500).send(createSecurityQuestionMongoDbErrorResponse.toObject());
        } else {
          console.log(securityQuestion);
-         const createSecurityQuestionResponse = new BaseResponse('200', 'Query successful', securityQuestion);
+         const createSecurityQuestionResponse = new BaseResponse('200', 'createSecurityQuestion query successful', securityQuestion);
          res.json(createSecurityQuestionResponse.toObject());
        }
      })
@@ -113,49 +113,6 @@ router.get('/:id', async(req, res) => {
    }
  })
 
- /*router.post(':/', async(req, res) => {
-   try {
-     SecurityQuestion.findOne({'_id': req.params._id}, function(err, question) {
-       if (err) {
-         console.log(err);
-
-         const createSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
-
-         res.status(500).send(createSecurityQuestionMongoDbErrorResponse.toObject());
-       } else {
-
-        const question = {
-          text: req.body.text
-        };
-
-        securityQuestion.push(question);
-        securityQuestion.save(function(err, updatedQuestion) {
-          if (err) {
-            console.log(err);
-
-            const createSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
-
-            res.status(500).send(createSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
-          } else {
-
-            console.log(updatedQuestion);
-
-            const createSecurityQuestionOnSaveSuccessResponse = new BaseResponse('200', 'Entry successful', updatedQuestion);
-
-            res.json(createSecurityQuestionOnSaveSuccessResponse.toObject());
-          }
-        });
-       }
-     });
-   } catch (e) {
-     console.log(e);
-
-     const createQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
-
-     res.status(500).send(createQuestionCatchErrorResponse.toObject());
-   }
- })
-*/
 
 /**
  * API: updateSecurityQuestion

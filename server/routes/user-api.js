@@ -40,29 +40,29 @@ router.get('/', async(req, res) => {
   }
 });
 
- //find all users by id
-router.get('/:id', async(req, res) => {
-  try
-  {
-    User.findOne({'_id': req.params.id}, function(err, user) {
+ //find user by id
+
+ router.get('/:id', async(req, res) => {
+  try {
+    User.findOne({'_id': req.params._id}, function(err, question) {
+
       if (err) {
         console.log(err);
-        const findByIdMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error',err);
-        res.status(500).send(findByIdMongoDbErrorResponse.toObject())
+
+        const mongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
+
+        res.status(500).send(mongoDbErrorResponse.toObject());
+      } else {
+
+        console.log(question);
+        res.json(question);
       }
-      else
-      {
-        console.log(user);
-        const findByIdResponse = new BaseResponse('200', 'Query successful', user);
-        res.json(findByIdResponse.toObject());
-      }
-    });
-  }
-  catch(e)
-  {
+    })
+  } catch (e) {
     console.log(e);
-    const findByIdCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
-    res.status(500).send(findByIdCatchErrorResponse.toObject());
+
+    const errorCatchResponse = new ErrorResponse('500', 'Internal server error', err)
+    res.status(500).send(errorCatchResponse.toObject());
   }
 });
 
@@ -138,45 +138,41 @@ router.post('/', async(req, res) => {
      res.status(500).send(updateUserCatchErrorResponse.toObject());
    }
  })
- //"delete" user
+ //"delete" user - set isDisabled to true, not remove from collection
 
- router.delete('/:id', async(req, res) => {
-   try
-   {
-     User.findOne({'_id': req.params.id}, function(err, user) {
-       if (err) {
-         console.log(err);
-         const deleteUserMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
-         res.status(500).send(deleteUserMongoDbErrorResponse.toObject());
-       }
-       else
-       {
-         console.log(user);
-         user.set({isDisabled: true});
+ router.delete('/:id', async (req, res) => {
+  try {
+    User.findOne({'_id': req.params.id}, function(err, securityQuestion) {
+      if (err) {
+        console.log(err);
+        const DeleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        res.status(500).send(DeleteSecurityQuestionMongodbErrorResponse.toObject());
+      } else {
+        console.log(securityQuestion);
 
-         user.save(function(err, savedUser) {
-           if (err) {
-             console.log(err);
-             const savedUserMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
-             res.status(500).send(savedUserMongoDbErrorResponse.toObject());
-           }
-           else
-           {
-             console.log(savedUser);
-             const savedUserResponse = new BaseResponse('200', 'Query successful', savedUser);
-             res.json(savedUserResponse.toObject());
-           }
-         });
-       }
-     });
-   }
-   catch(e)
-   {
-     console.log(e);
-     const deleteUserCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
-     res.status(500).send(deleteUserCatchErrorResponse.toObject());
-   }
- });
+        securityQuestion.set({
+          isDisabled: true
+        });
+
+        securityQuestion.save(function(err, savedSecurityQuestion) {
+          if (err) {
+            console.log(err);
+            const savedSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+            res.status(500).send(savedSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
+          } else {
+            console.log(savedSecurityQuestion);
+            const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, 'Security Question was deleted', savedSecurityQuestion);
+            res.json(DeleteSecurityQuestionSuccessResponse.toObject());
+          }
+        })
+      }
+    })
+  } catch (e) {
+    console.log(e);
+    const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+    res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
+  }
+})
 
 
 
