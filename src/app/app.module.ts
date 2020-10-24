@@ -29,6 +29,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { MatMenuModule } from '@angular/material/menu';
     HomeComponent,
     BaseLayoutComponent,
     AuthLayoutComponent,
-    SignInComponent
+    SignInComponent,
+    UserListComponent,
+    DeleteRecordDialogComponent
   ],
   imports: [
     BrowserModule,

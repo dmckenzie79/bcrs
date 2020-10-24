@@ -83,7 +83,8 @@ router.post('/', async(req, res) => {
       lastName: req.body.lastName,
       phoneNumber: req.body.phoneNumber,
       address: req.body.address,
-      email: req.body.email
+      email: req.body.email,
+      role: standardRole //from slack update from krasso
     };
 
     User.create(newUser, function(err, user) {
