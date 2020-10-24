@@ -1,4 +1,10 @@
-.sign-in-container{
+.numeric-warning, .text-warning {
+  margin: 0 auto;
+  color: red;
+  font-size: 1.5em;
+}
+
+.sign-in-container {
   margin: 10% auto;
   width: 600px;
 }

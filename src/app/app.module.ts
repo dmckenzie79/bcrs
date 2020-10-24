@@ -29,6 +29,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatDividerModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule,
+    
 
   ],
   providers: [SessionGuard],

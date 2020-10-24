@@ -33,7 +33,7 @@ router.get('/', async(req, res) => {
         const userFindAllSuccessResponse = new BaseResponse(200, 'Find All was Successful', users);
         res.json(userFindAllSuccessResponse.toObject());
       }
-    })
+    });
   } catch (e) {
     const userFindAllCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
     res.status(500).send(userFindAllCatchErrorResponse.toObject());
@@ -59,7 +59,7 @@ router.get('/', async(req, res) => {
         console.log(user);
         res.json(user);
       }
-    })
+    });
   } catch (e) {
     console.log(e);
 
@@ -74,6 +74,9 @@ router.get('/', async(req, res) => {
 router.post('/', async(req, res) => {
   try {
     let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); //salt/hash the password
+    standardRole = {
+      role: 'standard'
+    };
 
     //user object
     let newUser = {
@@ -83,7 +86,8 @@ router.post('/', async(req, res) => {
       lastName: req.body.lastName,
       phoneNumber: req.body.phoneNumber,
       address: req.body.address,
-      email: req.body.email
+      email: req.body.email,
+    
     };
 
     User.create(newUser, function(err, user) {
@@ -121,25 +125,31 @@ router.post('/', async(req, res) => {
            lastName: req.body.lastName,
            phoneNumber: req.body.phoneNumber,
            address: req.body.address,
-           email: req.body.email
-         })
+           email: req.body.email,
+         });
 
          user.save(function(err, savedUser) {
            if (err) {
              console.log(err);
              const saveUserMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
              res.status(500).send(saveUserMongodbErrorResponse.toObject());
-           }
-         })
+           } else {
+            console.log(savedUser);
+
+            const userUpdateOnSaveSuccessResponse = new BaseResponse('200', 'Update Successful', savedUser);
+
+            res.json(userUpdateOnSaveSuccessResponse.toObject());
+          }
+         });
        }
-     })
+     });
    }
    catch (e) {
      console.log(e);
      const updateUserCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
      res.status(500).send(updateUserCatchErrorResponse.toObject());
    }
- })
+ });
  //"delete" user - set isDisabled to true, not remove from collection
 
  router.delete('/:id', async (req, res) => {
@@ -166,15 +176,15 @@ router.post('/', async(req, res) => {
             const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, 'Security Question was deleted', savedSecurityQuestion);
             res.json(DeleteSecurityQuestionSuccessResponse.toObject());
           }
-        })
+        });
       }
-    })
+    });
   } catch (e) {
     console.log(e);
     const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
     res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
   }
-})
+});
 
 
 

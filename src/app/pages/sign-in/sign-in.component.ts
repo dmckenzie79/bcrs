@@ -9,8 +9,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+
 
 
 
@@ -25,7 +27,7 @@ export class SignInComponent implements OnInit {
   errorMessage: string;
 
   constructor(private router: Router, private cookieService: CookieService,
-    private fb: FormBuilder, private http: HttpClient) {
+    private fb: FormBuilder, private http: HttpClient, private snackBar: MatSnackBar) {
 
     }
 
@@ -52,8 +54,19 @@ export class SignInComponent implements OnInit {
           */
         this.cookieService.set('session_user', res['data'].userName, 1); // set the user name to the cookie, session_user name
         this.router.navigate(['/']);
-      }
-    }, err => {
+      } else {
+        /**
+          * Otherwise, display an invalid error message
+          */
+
+        this.snackBar.open('An invalid username or password was entered. Please try again', 'ERROR', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+
+        }
+      }, err => {
       console.log(err);
       this.errorMessage = err.error.message;
     });
