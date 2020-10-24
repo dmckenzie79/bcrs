@@ -31,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,9 @@ import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delet
     MatFormFieldModule,
     MatDividerModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule,
+
 
   ],
   providers: [SessionGuard],

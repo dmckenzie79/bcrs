@@ -13,8 +13,8 @@ const express = require('express');
 const SecurityQuestion = require('../models/security-question');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
-const User = require('../models/user');
-//const securityQuestionSchema = require('../models/security-question');
+//const User = require('../models/user');
+const securityQuestionSchema = require('../models/security-question');
 //const { bluebird } = require('bluebird');
 //const { create } = require('../models/security-question');
 
@@ -79,7 +79,7 @@ router.get('/:id', async(req, res) => {
         console.log(question);
         res.json(question);
       }
-    })
+    });
   } catch (e) {
     console.log(e);
 
@@ -107,13 +107,13 @@ router.get('/:id', async(req, res) => {
          const createSecurityQuestionResponse = new BaseResponse('200', 'createSecurityQuestion query successful', securityQuestion);
          res.json(createSecurityQuestionResponse.toObject());
        }
-     })
+     });
    } catch(e) {
      console.log(e);
      const createSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
      res.status(500).send(createSecurityQuestionCatchErrorResponse.toObject());
    }
- })
+ });
 
 
 /**
@@ -193,15 +193,15 @@ router.delete('/:id', async (req, res) => {
             const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, 'Security Question was deleted', savedSecurityQuestion);
             res.json(DeleteSecurityQuestionSuccessResponse.toObject());
           }
-        })
+        });
       }
-    })
+    });
   } catch (e) {
     console.log(e);
     const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
     res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
   }
-})
+});
 
 
 module.exports = router;

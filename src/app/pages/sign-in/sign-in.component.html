@@ -7,6 +7,11 @@
 -->
 
 <div fxLayout="column">
+
+  <div fxFlex *ngIf="errorMessage" class ="text-warning">
+    {{ errorMessage }}
+  </div>
+
     <div fxFlex>
       <mat-card class="mat-elevation-z8 sign-in-container">
 
