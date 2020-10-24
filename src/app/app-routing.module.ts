@@ -12,6 +12,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SessionGuard } from './shared/guard/session.guard';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
+import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
+import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
 
 const routes: Routes = [
   {
@@ -21,9 +24,20 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        canActivate: [SessionGuard]
+      },
+      {
+        path: 'security-questions',
+        component: SecurityQuestionListComponent
+      },
+        path: 'security-questions/:questionId',
+        component: SecurityQuestionDetailsComponent
+      },
+      {
+        path: 'security-questions/create/new',
+        component: SecurityQuestionCreateComponent
       }
-    ]
+    ],
+    canActivate: [SessionGuard]
   },
   {
     path: 'session',
