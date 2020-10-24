@@ -29,6 +29,7 @@ const routes: Routes = [
         path: 'security-questions',
         component: SecurityQuestionListComponent
       },
+      {
         path: 'security-questions/:questionId',
         component: SecurityQuestionDetailsComponent
       },

@@ -32,6 +32,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { DeleteRecordDialogComponent } from './shared/delete-record-dialog/delete-record-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
+import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
+import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
+import { UserCreateComponent } from './pages/user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AuthLayoutComponent,
     SignInComponent,
     UserListComponent,
-    DeleteRecordDialogComponent
+    DeleteRecordDialogComponent,
+    SecurityQuestionCreateComponent,
+    SecurityQuestionDetailsComponent,
+    SecurityQuestionListComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,
