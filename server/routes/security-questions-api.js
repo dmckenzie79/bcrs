@@ -66,7 +66,7 @@ router.get('/:id', async(req, res) => {
   try {
     SecurityQuestion.findOne({'_id': req.params.id}, function(err, question) {
 
-      console.log(req.params._id)
+      console.log(req.params._id);
 
       if (err) {
         console.log(err);
