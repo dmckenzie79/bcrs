@@ -48,5 +48,14 @@ export class UserListComponent implements OnInit {
       disableClose: true,
       width: '720px'
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.userService.deleteUser(userId).subscribe(res => {
+          console.log('User delete');
+          this.users = this.users.filter(u => u._id !== userId);
+        })
+      }
+    });
   }
 }

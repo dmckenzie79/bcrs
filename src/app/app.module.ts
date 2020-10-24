@@ -36,6 +36,7 @@ import { SecurityQuestionCreateComponent } from './pages/security-question-creat
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UserCreateComponent } from './pages/user-create/user-create.component';
     SecurityQuestionCreateComponent,
     SecurityQuestionDetailsComponent,
     SecurityQuestionListComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
