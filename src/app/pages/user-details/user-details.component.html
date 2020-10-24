@@ -1,20 +1,10 @@
 <div fxLayout="column">
   <mat-card class="mat-elevation-z8">
-    <mat-card-title>Create User</mat-card-title>
+    <mat-card-title>User Details</mat-card-title>
     <br />
-    <form [formGroup]="form" (ngSubmit)="createUser()" #userForm>
+    <form [formGroup]="form" (ngSubmit)="saveUser()" #userForm>
       <mat-card-content>
         <div fxLayout="column" fxLayoutGap="10px">
-
-          <mat-form-field>
-            <input type="text" matInput [formControl]="form.controls['userName']"
-                   placeholder="Username"/>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input type="text" matInput [formControl]="form.controls['password']"
-                   placeholder="Password"/>
-          </mat-form-field>
 
           <mat-form-field>
             <input type="text" matInput [formControl]="form.controls['firstName']"
@@ -53,4 +43,3 @@
       </form>
     </mat-card>
   </div>
-

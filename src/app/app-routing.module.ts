@@ -15,6 +15,9 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
 import { SecurityQuestionCreateComponent } from './pages/security-question-create/security-question-create.component';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { UserCreateComponent } from './pages/user-create/user-create.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,18 @@ const routes: Routes = [
       {
         path: 'security-questions/create/new',
         component: SecurityQuestionCreateComponent
+      },
+      {
+        path: 'users',
+        component: UserListComponent
+      },
+      {
+        path: 'users/create/new',
+        component: UserCreateComponent
+      },
+      {
+        path: 'users/:userId',
+        component: UserDetailsComponent
       }
     ],
     canActivate: [SessionGuard]
