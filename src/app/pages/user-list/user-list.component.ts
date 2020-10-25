@@ -13,6 +13,7 @@ import { User } from './../../../user.interface';
 import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
 
 
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -21,6 +22,7 @@ import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog
 export class UserListComponent implements OnInit {
 
   users: User[];
+
 
   //columns of user data to be displayed
   displayedColumns = ['userName', 'firstName', 'lastName', 'phoneNumber', 'address', 'email', 'functions'];

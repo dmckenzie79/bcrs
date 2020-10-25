@@ -37,6 +37,7 @@ import { SecurityQuestionDetailsComponent } from './pages/security-question-deta
 import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { UserDetailsComponent } from './pages/user-details/user-details.componen
     MatDialogModule,
     MatMenuModule,
     MatSnackBarModule,
+    MatTableModule
 
 
   ],
