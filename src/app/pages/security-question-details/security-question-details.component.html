@@ -8,7 +8,7 @@
           <mat-form-field>
             <input matInput
                    [formControl]="form.controls['text']"
-                   placeholder="Security question text..." (keydown.enter="saveQuestion()") />
+                   placeholder="Security question text..." (keydown.enter)="saveQuestion()" />
           </mat-form-field>
         </div>
       </mat-card-content>
