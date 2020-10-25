@@ -2,13 +2,14 @@
   <mat-card class="mat-elevation-z8">
     <mat-card-title>Create New Security Question</mat-card-title>
     <br/>
-    <form [formGroup]="form" (ngSubmit)="create()">
+    <form [formGroup]="form" (ngSubmit)="create()" #sqForm>
       <mat-card-content>
         <div fxLayout="column" fxLayoutGap="10px">
           <mat-form-field>
-            <input matInput
+            <input type="text"
+                   matInput
                    [formControl]="form.controls['text']"
-                   placeholder="Security question text..." (keydown.enter="create()") />
+                   placeholder="Security question text...">
           </mat-form-field>
         </div>
       </mat-card-content>

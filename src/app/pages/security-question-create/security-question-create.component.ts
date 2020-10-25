@@ -6,11 +6,11 @@
  ; Description: Security Question Create file
  ===========================================*/
 
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SecurityQuestionService } from 'src/app/shared/services/security-question.service';
+import { SecurityQuestionService } from '../../shared/services/security-question.service';
 import { SecurityQuestion } from '../../shared/interfaces/security-question.interface';
 
 @Component({
@@ -22,7 +22,8 @@ export class SecurityQuestionCreateComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private securityQuestionService: SecurityQuestionService) {
+
+  constructor(private fb: FormBuilder, private router: Router, private securityQuestionService: SecurityQuestionService) {
 
    }
 
@@ -37,7 +38,7 @@ export class SecurityQuestionCreateComponent implements OnInit {
     newSecurityQuestion.text = this.form.controls.text.value;
 
     this.securityQuestionService.createSecurityQuestion(newSecurityQuestion).subscribe(res => {
-      this.router.navigate(['/security-questions']);
+      this.router.navigate(['/security-questions'])
     }, err => {
       console.log(err);
     })
