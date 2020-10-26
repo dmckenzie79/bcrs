@@ -7,39 +7,43 @@
     </mat-card-subtitle>
 
     <mat-card-content *ngIf="users">
-      <table mat-table [dataSource]="users">
+      <table mat-table
+      [dataSource]="users"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)" >
         <ng-container matColumnDef="userName">
-          <th mat-header-cell *matHeaderCellDef>Username</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>Username</th>
           <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>First Name</th>
           <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>Last Name</th>
           <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="phoneNumber">
-          <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>Phone Number</th>
           <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
         </ng-container>
 
         <ng-container matColumnDef="address">
-          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>Address</th>
           <td mat-cell *matCellDef="let element">{{ element.address }}</td>
         </ng-container>
 
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>Email</th>
           <td mat-cell *matCellDef="let element"> {{element.email }}</td>
         </ng-container>
 
         <ng-container matColumnDef="functions">
-          <th mat-header-cell *matHeaderCellDef>Functions</th>
+          <th mat-header-cell cdkDrag *matHeaderCellDef>Functions</th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button routerLink="/users/{{ element._id }}">
               <mat-icon color="accent">edit</mat-icon>
@@ -54,6 +58,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
     </mat-card-content>
   </mat-card>
 </div>
