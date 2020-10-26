@@ -2,11 +2,11 @@
   <mat-card class="mat-elevation-z8">
     <mat-card-title>Security Questions Configuration</mat-card-title>
     <mat-card-subtitle>
-      <button mat-button routerLink="/security-questions/create/new" color="accent">Create</button>
+      <button fxFlex mat-button routerLink="/security-questions/create/new" color="accent">Create</button>
     </mat-card-subtitle>
 
     <br />
-    <mat-card-content *ngIf="securityQuestions">
+    <mat-card-content class='center' *ngIf="securityQuestions">
       <table mat-table [dataSource]="securityQuestions">
         <ng-container matColumnDef="question">
           <th mat-header-cell *matHeaderCellDef>Question</th>

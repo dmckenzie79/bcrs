@@ -3,3 +3,7 @@ mat-card {
   margin: auto;
   margin-top: 5%;
 }
+
+mat-card-title {
+  text-align: center;
+}
