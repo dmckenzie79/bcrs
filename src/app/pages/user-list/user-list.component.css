@@ -1,0 +1,22 @@
+mat-card {
+  width: 50%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+mat-card-title, mat-card-subtitle
+ {
+   text-align: center;
+ }
+
+ .mat-column-firstName, .mat-column-userName, .mat-column-phoneNumber, .mat-column-lastName, .mat-column-functions {
+   width: 150px;
+ }
+
+ .mat-column-address {
+   width: 250px
+ }
+
+ .mat-column-email {
+   width: 200px;
+ }
