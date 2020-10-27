@@ -38,6 +38,8 @@ import { SecurityQuestionListComponent } from './pages/security-question-list/se
 import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { MatTableModule } from '@angular/material/table';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { MatTableModule } from '@angular/material/table';
     SecurityQuestionDetailsComponent,
     SecurityQuestionListComponent,
     UserCreateComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

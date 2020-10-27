@@ -18,6 +18,8 @@ import { SecurityQuestionCreateComponent } from './pages/security-question-creat
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,14 @@ const routes: Routes = [
       {
         path: 'users/:userId',
         component: UserDetailsComponent
+      },
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       }
     ],
     canActivate: [SessionGuard]
