@@ -1,3 +1,9 @@
+/* ============================================
+ ; Title:  contact.component.ts
+ ; Author: Zach Dahir
+ ; Date:   26 October 2020
+ ; Description: contact page
+ ===========================================*/
 import { Component, OnInit } from '@angular/core';
 
 @Component({

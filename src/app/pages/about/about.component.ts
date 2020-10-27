@@ -1,3 +1,9 @@
+/* ============================================
+ ; Title:  about.component.ts
+ ; Author: Zach Dahir
+ ; Date:   26 October 2020
+ ; Description: about page
+ ===========================================*/
 import { Component, OnInit } from '@angular/core';
 
 @Component({
