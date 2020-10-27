@@ -14,11 +14,20 @@ const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
-//const { try } = require('bluebird');
+
 
 
 const router= express.Router();
 const saltRounds = 10; //default salt rounds for hashing algorithm
+
+//constants to pass into responses
+const serverError = "Internal server error";
+const querySuccess = "Query successful - ";
+const findAllUsers = "find all users";
+const findUserById = "find user by id";
+const createUser = "create user";
+const updateUser = "update user";
+const deleteUser = "delete user"
 
  //find all
 router.get('/', async(req, res) => {
@@ -26,16 +35,16 @@ router.get('/', async(req, res) => {
     User.find({}).where('isDisabled').equals(false).exec(function(err, users) {
       if (err) {
         console.log(err);
-        const userFindAllMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        const userFindAllMongodbErrorResponse = new ErrorResponse(500, serverError, err);
         res.status(500).send(userFindAllMongodbErrorResponse.toObject());
       } else {
         console.log(users);
-        const userFindAllSuccessResponse = new BaseResponse(200, 'Find All was Successful', users);
+        const userFindAllSuccessResponse = new BaseResponse(200, querySuccess + findAllUsers, users);
         res.json(userFindAllSuccessResponse.toObject());
       }
     });
   } catch (e) {
-    const userFindAllCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
+    const userFindAllCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
     res.status(500).send(userFindAllCatchErrorResponse.toObject());
   }
 });
@@ -51,7 +60,7 @@ router.get('/', async(req, res) => {
       if (err) {
         console.log(err);
 
-        const mongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
+        const mongoDbErrorResponse = new ErrorResponse ('500', serverError, err);
 
         res.status(500).send(mongoDbErrorResponse.toObject());
       } else {
@@ -63,7 +72,7 @@ router.get('/', async(req, res) => {
   } catch (e) {
     console.log(e);
 
-    const errorCatchResponse = new ErrorResponse('500', 'Internal server error', err)
+    const errorCatchResponse = new ErrorResponse('500', serverError, err)
     res.status(500).send(errorCatchResponse.toObject());
   }
 });
@@ -92,17 +101,17 @@ router.post('/', async(req, res) => {
     User.create(newUser, function(err, user) {
       if (err) {
         console.log(err);
-        const createUserMongoDbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        const createUserMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
         res.status(500).send(createUserMongoDbErrorResponse.toObject());
       } else {
         console.log(user);
-        const createUserResponse = new BaseResponse(200, 'Query successful', user);
+        const createUserResponse = new BaseResponse(200, querySuccess + createUser, user);
         res.json(createUserResponse.toObject());
       }
     });
   } catch (e) {
     console.log(e);
-    const createUserCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
+    const createUserCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
     res.status(500).send(createUserCatchErrorResponse.toObject());
     }
   });
@@ -114,7 +123,7 @@ router.post('/', async(req, res) => {
      User.findOne({'_id': req.params.id}, function(err, user) {
        if (err) {
          console.log(err);
-         const userUpdateMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+         const userUpdateMongodbErrorResponse = new ErrorResponse(500, serverError, err);
          res.status(500).send(userUpdateMongodbErrorResponse.toObject());
        } else {
          console.log(user);
@@ -130,12 +139,12 @@ router.post('/', async(req, res) => {
          user.save(function(err, savedUser) {
            if (err) {
              console.log(err);
-             const saveUserMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+             const saveUserMongodbErrorResponse = new ErrorResponse(500, serverError, err);
              res.status(500).send(saveUserMongodbErrorResponse.toObject());
            } else {
             console.log(savedUser);
 
-            const userUpdateOnSaveSuccessResponse = new BaseResponse('200', 'Update Successful', savedUser);
+            const userUpdateOnSaveSuccessResponse = new BaseResponse('200', querySuccess + updateUser, savedUser);
 
             res.json(userUpdateOnSaveSuccessResponse.toObject());
           }
@@ -145,7 +154,7 @@ router.post('/', async(req, res) => {
    }
    catch (e) {
      console.log(e);
-     const updateUserCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
+     const updateUserCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
      res.status(500).send(updateUserCatchErrorResponse.toObject());
    }
  });
@@ -156,7 +165,7 @@ router.post('/', async(req, res) => {
     User.findOne({'_id': req.params.id}, function(err, securityQuestion) {
       if (err) {
         console.log(err);
-        const DeleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        const DeleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, serverError, err);
         res.status(500).send(DeleteSecurityQuestionMongodbErrorResponse.toObject());
       } else {
         console.log(securityQuestion);
@@ -168,11 +177,11 @@ router.post('/', async(req, res) => {
         securityQuestion.save(function(err, savedSecurityQuestion) {
           if (err) {
             console.log(err);
-            const savedSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+            const savedSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
             res.status(500).send(savedSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
           } else {
             console.log(savedSecurityQuestion);
-            const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, 'Security Question was deleted', savedSecurityQuestion);
+            const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, querySuccess + deleteUser, savedSecurityQuestion);
             res.json(DeleteSecurityQuestionSuccessResponse.toObject());
           }
         });
@@ -180,7 +189,7 @@ router.post('/', async(req, res) => {
     });
   } catch (e) {
     console.log(e);
-    const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+    const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
     res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
   }
 });

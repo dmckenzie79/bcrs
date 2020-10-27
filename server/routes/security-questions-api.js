@@ -21,6 +21,16 @@ const securityQuestionSchema = require('../models/security-question');
 
 const router= express.Router();
 
+//constants to pass into responses
+const serverError = "Internal server error";
+const querySuccess = "Query successful - ";
+const findAllSecurityQuestions = "find all security questions";
+const findSecurityQuestionById = "find security question by id";
+const createSecurityQuestion = "create security question";
+const updateSecurityQuestion = "update security question";
+const deleteSecurityQuestion = "delete security question"
+
+
 
 /**
  * API: findAllSecurityQuestions
@@ -36,14 +46,14 @@ router.get('/', async(req, res) => {
         if (err) {
           console.log(err);
 
-          const findAllMongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
+          const findAllMongoDbErrorResponse = new ErrorResponse ('500', serverError, err);
 
           res.status(500).send(findAllMongoDbErrorResponse.toObject());
 
         } else {
           console.log(securityQuestions);
 
-          const findAllResponse = new BaseResponse('200', 'Query successful', securityQuestions);
+          const findAllResponse = new BaseResponse('200', querySuccess + findAllSecurityQuestions, securityQuestions);
 
           res.json(findAllResponse.toObject());
         }
@@ -53,7 +63,7 @@ router.get('/', async(req, res) => {
 
       console.log(e);
 
-      const findAllErrorCatchResponse = new ErrorResponse('500', 'Internal server error', e.message);
+      const findAllErrorCatchResponse = new ErrorResponse('500', serverError, e.message);
 
           res.status(500).send(findAllErrorCatchResponse.toObject());
 
@@ -71,7 +81,7 @@ router.get('/:id', async(req, res) => {
       if (err) {
         console.log(err);
 
-        const mongoDbErrorResponse = new ErrorResponse ('500', 'Internal server error', err);
+        const mongoDbErrorResponse = new ErrorResponse ('500', serverError, err);
 
         res.status(500).send(mongoDbErrorResponse.toObject());
       } else {
@@ -83,7 +93,7 @@ router.get('/:id', async(req, res) => {
   } catch (e) {
     console.log(e);
 
-    const errorCatchResponse = new ErrorResponse('500', 'Internal server error', err)
+    const errorCatchResponse = new ErrorResponse('500', serverError, err)
     res.status(500).send(errorCatchResponse.toObject());
   }
 });
@@ -100,17 +110,17 @@ router.get('/:id', async(req, res) => {
      SecurityQuestion.create(newSecurityQuestion, function(err, securityQuestion) {
        if(err) {
          console.log(err);
-         const createSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
+         const createSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', serverError, err);
          res.status(500).send(createSecurityQuestionMongoDbErrorResponse.toObject());
        } else {
          console.log(securityQuestion);
-         const createSecurityQuestionResponse = new BaseResponse('200', 'createSecurityQuestion query successful', securityQuestion);
+         const createSecurityQuestionResponse = new BaseResponse('200', querySuccess + createSecurityQuestion, securityQuestion);
          res.json(createSecurityQuestionResponse.toObject());
        }
      });
    } catch(e) {
      console.log(e);
-     const createSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+     const createSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
      res.status(500).send(createSecurityQuestionCatchErrorResponse.toObject());
    }
  });
@@ -129,7 +139,7 @@ router.put('/:id', async(req, res) => {
      if (err) {
        console.log(err);
 
-       const updateSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
+       const updateSecurityQuestionMongoDbErrorResponse = new ErrorResponse('500', serverError, err);
 
        res.status(500).send(updateSecurityQuestionMongoDbErrorResponse.toObject());
      } else {
@@ -143,13 +153,13 @@ router.put('/:id', async(req, res) => {
            if (err) {
              console.log(err);
 
-             const updateSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse('500', 'Internal server error', err);
+             const updateSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse('500', serverError, err);
 
              res.status(500).send(updateSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
            } else {
              console.log(savedSecurityQuestion);
 
-             const updateSecurityQuestionOnSaveSuccessResponse = new BaseResponse('200', 'Update Successful', savedSecurityQuestion);
+             const updateSecurityQuestionOnSaveSuccessResponse = new BaseResponse('200', querySuccess + updateSecurityQuestion, savedSecurityQuestion);
 
              res.json(updateSecurityQuestionOnSaveSuccessResponse.toObject());
            }
@@ -161,7 +171,7 @@ router.put('/:id', async(req, res) => {
 
      console.log(e);
 
-     const updateSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+     const updateSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
 
      res.status(500).send(updateSecurityQuestionCatchErrorResponse.toObject());
   }
@@ -174,7 +184,7 @@ router.delete('/:id', async (req, res) => {
     SecurityQuestion.findOne({'_id': req.params.id}, function(err, securityQuestion) {
       if (err) {
         console.log(err);
-        const DeleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        const DeleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, serverError, err);
         res.status(500).send(DeleteSecurityQuestionMongodbErrorResponse.toObject());
       } else {
         console.log(securityQuestion);
@@ -186,11 +196,11 @@ router.delete('/:id', async (req, res) => {
         securityQuestion.save(function(err, savedSecurityQuestion) {
           if (err) {
             console.log(err);
-            const savedSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+            const savedSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
             res.status(500).send(savedSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
           } else {
             console.log(savedSecurityQuestion);
-            const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, 'Security Question was deleted', savedSecurityQuestion);
+            const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, querySuccess + deleteSecurityQuestion, savedSecurityQuestion);
             res.json(DeleteSecurityQuestionSuccessResponse.toObject());
           }
         });
@@ -198,7 +208,7 @@ router.delete('/:id', async (req, res) => {
     });
   } catch (e) {
     console.log(e);
-    const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+    const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
     res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
   }
 });

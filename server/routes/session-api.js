@@ -20,6 +20,9 @@ const User = require('../models/user');
 
 const router= express.Router();
 
+//constants to pass into responses
+const serverError = "Internal server error";
+
 /**
  * User sign-in
  */
@@ -31,7 +34,7 @@ router.post('/signin', async(req, res) => {
       if (err)
       {
         console.log(err);
-        const signInMongoDbErrorResponse = new ErrorResponse(500, 'Internal server error', err);
+        const signInMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
         res.status(500).send(signInMongoDbErrorResponse.toObject());
       }
       else{
@@ -76,7 +79,7 @@ router.post('/signin', async(req, res) => {
   catch(e)
   {
     console.log(e);
-    const signInCatchErrorResponse = new ErrorResponse(500, 'Internal server error', e.message);
+    const signInCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
     res.status(500).send(signInCatchErrorResponse.toObject());
   }
 });
