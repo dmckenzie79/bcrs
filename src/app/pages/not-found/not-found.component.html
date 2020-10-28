@@ -1,0 +1,21 @@
+<div fxLayout="column">
+  <div fxFlex fxLayoutAlign="start" class="error-container" fxLayout="row" matRipple>
+    <h1 fxFlex fxLayoutAlign="space-evenly">4</h1>
+    <mat-icon fxFlex fxLayoutAlign="space-evenly">
+      sentiment_very_dissatisfied
+    </mat-icon>
+    <h1 fxFlex fxLayoutAlign="space-evenly">4</h1>
+  </div>
+
+  <mat-card fxFlex fxLayoutAlign="space-between" class="error-explanation"fxLayout="row" fxLayoutGap="25%"
+  >
+       <p fxFlex>
+        You've navigated to a page that doesn't exist! Sorry we couldn't find
+        what you were looking for.
+      </p>
+      <button fxFlex mat-button mat-raised-button routerLink="/" color="accent">
+        Home, please
+      </button>
+
+  </mat-card>
+</div>

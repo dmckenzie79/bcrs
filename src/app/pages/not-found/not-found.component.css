@@ -1,0 +1,17 @@
+h1 {
+  margin-top: 25%;
+  font-size: 720px;
+  color:#b39ddb;
+}
+
+mat-icon {
+  margin-top: 5%;
+  font-size: 600px;
+  color:#b39ddb;
+}
+
+.error-explanation {
+  margin: 25% 15%;
+  padding: 15px;
+  background-color: #80ddea;
+}

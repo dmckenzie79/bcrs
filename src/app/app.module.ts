@@ -40,6 +40,7 @@ import { UserDetailsComponent } from './pages/user-details/user-details.componen
 import { MatTableModule } from '@angular/material/table';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ContactComponent } from './pages/contact/contact.component';
     UserCreateComponent,
     UserDetailsComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
