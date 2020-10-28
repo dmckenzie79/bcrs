@@ -59,10 +59,11 @@ export class SignInComponent implements OnInit {
           * Otherwise, display an invalid error message
           */
 
-        this.snackBar.open('An invalid username or password was entered. Please try again', 'ERROR', {
+        this.snackBar.open('An invalid username or password was entered. Please try again', 'OK', {
           duration: 3000,
           horizontalPosition: 'center',
           verticalPosition: 'top',
+          panelClass: ["custom-style"]
         });
 
         }
