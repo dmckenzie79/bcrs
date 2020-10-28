@@ -1,0 +1,25 @@
+mat-card-content {
+  font-size: large;
+  line-height: 1.6;
+}
+
+mat-card {
+  width: 75%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+
+mat-card {
+  margin: auto;
+  margin-top: 5%;
+}
+
+mat-card-title {
+  font-size: 35px;
+}
+
+mat-card-subtitle {
+  font-size: 25px;
+  padding-top: 5px;
+}
