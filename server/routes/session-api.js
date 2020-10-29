@@ -84,4 +84,71 @@ router.post('/signin', async(req, res) => {
   }
 });
 
+//Verify User Api
+
+router.get('/verify/users/:userName', async (req, res) => {
+  try {
+    User.findOne({'userName': req.params.userName}, function(err, user) {
+
+      if (err) {
+        console.log(err);
+        const verifyUserMongodbErrorResponse = new ErrorResponse('500', "Internal Server Error", err);
+        res.status(500).send(verifyUserMongodbErrorResponse.toObject());
+      }
+      else {
+        console.log(user);
+        const verifyUserResponse = new BaseResponse('200', "User Successfully Verified", user);
+        res.json(verifyUserResponse.toObject());
+      }
+    })
+  }
+  catch (e) {
+    console.log(e);
+    const verifyUserCatchErrorResponse = new ErrorResponse('500', 'Internal Server Error', e.message);
+    res.status(500).send(verifyUserCatchErrorResponse.toObject());
+  }
+})
+
+//Verify Security Questions API
+
+router.post('/verify/users/:userName/security-questions', async (req, res) => {
+  try {
+    User.findOne({'userName': req.params.UserName}, function(err, user){
+      if (err) {
+        console.log(err);
+        const verifySecurityQuestionsMongodbErrorResponse = new ErrorResponse('500', 'Internal Server Error', err);
+        res.status(500).send(verifySecurityQuestionsMongodbErrorResponse.toObject());
+      }
+      else {
+        //find security question answer and set to new const
+        const selectedSecurityQuestionOne = user.selectedSecurityQuestions.find(q => q.questionText === req.body.questionText1);
+        const selectedSecurityQuestionTwo = user.selectedSecurityQuestions.find(q2 => q2.questionText === req.body.questionText2);
+        const selectedSecurityQuestionThree = user.selectedSecurityQuestions.find(q3 => q3.questionText === req.body.questionText3);
+
+        //verify that answer is correct for each question
+        const isValidAnswerOne = selectedSecurityQuestionOne.answerText === req.body.answerText1;
+        const isValidAnswerTwo = selectedSecurityQuestionTwo.answerText === req.body.answerText2;
+        const isValidAnswerThree = selectedSecurityQuestionThree.answerText === req.body.answerText3;
+
+        //Check if all three are correct
+        if (isValidAnswerOne && isValidAnswerTwo && isValidAnswerThree) {
+          console.log('User ${user.userName} is verified');
+          const validSecurityQuestionResponse = new BaseResponse ('200', 'User Verified', user);
+          res.json(validSecurityQuestionResponse.toObject());
+        }
+        else {
+          console.log('User ${user.userName} did not answer correctly');
+          const invalidSecurityQuestionResponse = new BaseResponse('200', 'Error: Incorrect Answer', user);
+          res.json(invalidSecurityQuestionResponse.toObject())
+        }
+
+      }
+    })
+  }
+  catch (e) {
+    console.log(e);
+    const verifySecurityQuestionsCatchErrorResponse = new ErrorResponse('500', 'Internal Server Error', e.message);
+    res.status(500).send(verifySecurityQuestionsCatchErrorResponse.toObject());
+  }
+})
 module.exports = router;
