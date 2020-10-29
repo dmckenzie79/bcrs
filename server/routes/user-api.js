@@ -14,6 +14,8 @@ const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
+const selectedSecurityQuestions = require('../models/selected-security-question');
+const { send } = require('process');
 
 
 
@@ -27,7 +29,7 @@ const findAllUsers = "find all users";
 const findUserById = "find user by id";
 const createUser = "create user";
 const updateUser = "update user";
-const deleteUser = "delete user"
+const deleteUser = "delete user";
 
  //find all
 router.get('/', async(req, res) => {
@@ -194,7 +196,34 @@ router.post('/', async(req, res) => {
   }
 });
 
+/**
+ * FindSelectedSecurityQuestion
+ */
 
+ router.get('/:userName/security-questions', async (req, res) => {
+   try
+   {
+     User.findOne({'userName': req.params.userName}, function(err, user)
+     {
+       if (err)
+       {
+         console.log(err);
+         const findSelectedSecurityQuestionsMongoDbErrorResponse = new ErrorResponse('500', serverError, err);
+         res.status(500).send(findSelectedSecurityQuestionsMongoDbErrorResponse.toObject());
+       }
+       else{
+         console.log(user);
+         const findSelectedSecurityQuestionResponse = new BaseResponse('200', querySuccess, user.selectedSecurityQuestions);
+         res.json(findSelectedSecurityQuestionResponse.toObject());
+       }
+     });
+   }
+   catch(e) {
+     console.log(e);
+     const findSelectedSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
+     res.status(500).send(findSelectedSecurityQuestionCatchErrorResponse.toObject());
 
+    }
+ });
 
  module.exports = router;

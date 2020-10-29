@@ -21,6 +21,8 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 
 const routes: Routes = [
   {
@@ -77,6 +79,14 @@ const routes: Routes = [
       {
         path: 'not-found',
         component: NotFoundComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
+        path: 'verify-security-questions',
+        component: VerifySecurityQuestionsFormComponent
       }
     ]
   },

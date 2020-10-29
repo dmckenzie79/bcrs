@@ -46,6 +46,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { RegisterComponent } from './pages/register/register.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
+import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
     AboutComponent,
     ContactComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    RegisterComponent,
+    VerifySecurityQuestionsFormComponent,
+    VerifyUsernameFormComponent
   ],
   imports: [
     BrowserModule,
