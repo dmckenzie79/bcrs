@@ -8,7 +8,7 @@
  import { Component, OnInit } from '@angular/core';
  import { MatDialog } from '@angular/material/dialog';
  import { HttpClient } from '@angular/common/http';
- import { UserService } from './../../user.service';
+ import { UserService } from './../../shared/services/user.service';
  import { User } from './../../../user.interface';
  import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';

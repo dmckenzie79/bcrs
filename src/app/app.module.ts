@@ -41,6 +41,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ServerErrorComponent } from './pages/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     UserDetailsComponent,
     AboutComponent,
     ContactComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,
