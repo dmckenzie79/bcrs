@@ -1,7 +1,19 @@
+.bar {
+  background-color: #80DEEA;
+  height: 100px;
+  margin-bottom: 5%;
+}
+
 .numeric-warning, .text-warning {
-  margin: 0 auto;
+  margin-top: 2%;
+  margin-left: 40%;
   color: red;
   font-size: 1.5em;
+  max-width: 500px;
+  height: 50px;
+  background-color: white;
+  text-align: center;
+  stroke: 1px, black;
 }
 
 .sign-in-container {
@@ -44,8 +56,4 @@
   color: #80DEEA;
   font-size: 18px;
   font-weight: 500;
-}
-
-.custom-style {
-  width: 200px;
 }

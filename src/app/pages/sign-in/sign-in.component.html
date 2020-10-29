@@ -7,10 +7,11 @@
 -->
 
 <div fxLayout="column">
-
+<div class="bar">
   <div fxFlex *ngIf="errorMessage" class ="text-warning">
     {{ errorMessage }}
   </div>
+</div>
 
     <div fxFlex>
       <mat-card class="mat-elevation-z8 sign-in-container">
@@ -45,7 +46,7 @@
             </div>
 
           <mat-card-actions>
-            <button class="submit" type="submit" (click)='signIn()' mat-raised-button>Sign in</button>
+            <button class="submit" type="submit" (click)='signIn();' mat-raised-button>Sign in</button>
           </mat-card-actions>
 
             <div class="password"><a routerLink="/">Forgot Password</a></div>

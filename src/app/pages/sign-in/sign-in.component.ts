@@ -54,17 +54,6 @@ export class SignInComponent implements OnInit {
           */
         this.cookieService.set('session_user', res['data'].userName, 1); // set the user name to the cookie, session_user name
         this.router.navigate(['/']);
-      } else {
-        /**
-          * Otherwise, display an invalid error message
-          */
-
-        this.snackBar.open('An invalid username or password was entered. Please try again', 'OK', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          panelClass: ["custom-style"]
-        });
 
         }
       }, err => {

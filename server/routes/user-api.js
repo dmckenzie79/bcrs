@@ -162,35 +162,35 @@ router.post('/', async(req, res) => {
 
  router.delete('/:id', async (req, res) => {
   try {
-    User.findOne({'_id': req.params.id}, function(err, securityQuestion) {
+    User.findOne({'_id': req.params.id}, function(err, user) {
       if (err) {
         console.log(err);
-        const DeleteSecurityQuestionMongodbErrorResponse = new ErrorResponse(500, serverError, err);
-        res.status(500).send(DeleteSecurityQuestionMongodbErrorResponse.toObject());
+        const deleteUserMongodbErrorResponse = new ErrorResponse(500, serverError, err);
+        res.status(500).send(deleteUserMongodbErrorResponse.toObject());
       } else {
-        console.log(securityQuestion);
+        console.log(user);
 
-        securityQuestion.set({
+        user.set({
           isDisabled: true
         });
 
-        securityQuestion.save(function(err, savedSecurityQuestion) {
+        user.save(function(err, savedUser) {
           if (err) {
             console.log(err);
-            const savedSecurityQuestionOnSaveMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
-            res.status(500).send(savedSecurityQuestionOnSaveMongoDbErrorResponse.toObject());
+            const savedUserMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
+            res.status(500).send(savedUserMongoDbErrorResponse.toObject());
           } else {
-            console.log(savedSecurityQuestion);
-            const DeleteSecurityQuestionSuccessResponse = new BaseResponse(200, querySuccess + deleteUser, savedSecurityQuestion);
-            res.json(DeleteSecurityQuestionSuccessResponse.toObject());
+            console.log(savedUser);
+            const userDeleteSuccessResponse = new BaseResponse(200, querySuccess + deleteUser, savedUser);
+            res.json(userDeleteSuccessResponse.toObject());
           }
         });
       }
     });
   } catch (e) {
     console.log(e);
-    const DeleteSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
-    res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
+    const userDeleteCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
+    res.status(500).send(userDeleteCatchErrorResponse.toObject());
   }
 });
 
