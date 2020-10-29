@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { UserService } from '../../user.service';
+import { UserService } from './../../shared/services/user.service';
 import { User } from './../../../user.interface';
 
 @Component({
