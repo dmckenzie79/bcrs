@@ -14,7 +14,6 @@
  import { HttpClient } from '@angular/common/http';
  import { SecurityQuestion } from '../../shared/interfaces/security-question.interface';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,9 +25,10 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   errorMessage: string;
 
+
   constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private cookieService: CookieService)  {
     this.http.get('/api/security-questions').subscribe(res => {
-      this.securityQuestions= res['data'];
+      this.securityQuestions = res['data'];
     }, err => {
       console.log(err);
     });
@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
     })
   });
 }
-
 register(form) {
   const contactInformation = form.contactInformation;
   const securityQuestions = form.securityQuestions;
@@ -97,7 +96,7 @@ register(form) {
       this.cookieService.set('session_user', credentials.userName, 1);
       this.router.navigate(['/']);
     } else {
-      /**
+       /**
        * User is not authenticated and we should return the error message
        */
       this.errorMessage = res['message'];

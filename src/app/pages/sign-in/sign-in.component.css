@@ -11,8 +11,9 @@
   max-width: 500px;
   height: 50px;
   background-color: white;
+  color: black;
   text-align: center;
-  stroke: 1px, black;
+
 }
 
 .sign-in-container {

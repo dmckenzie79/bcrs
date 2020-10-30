@@ -10,6 +10,9 @@
 <div class="bar">
   <div fxFlex *ngIf="errorMessage" class ="text-warning">
     {{ errorMessage }}
+    <button fxFlex mat-button mat-raised-button color="accent">
+      OK
+    </button>
   </div>
 </div>
 
@@ -52,7 +55,9 @@
             <div class="password"><a routerLink="/">Forgot Password</a></div>
 <br />
 <br />
-            <div class="account"><a routerLink="/">Create an Account</a></div>
+            <div class="account">
+              <a routerLink="/register">Create an Account</a>
+            </div>
         </form>
       </mat-card-content>
       </mat-card>

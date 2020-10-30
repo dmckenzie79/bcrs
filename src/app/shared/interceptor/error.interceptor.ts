@@ -15,11 +15,12 @@ import {
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) {
+  constructor(private cookieService: CookieService, private router: Router) {
 
   }
 

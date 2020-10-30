@@ -64,7 +64,11 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
-      }
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
     ],
     canActivate: [SessionGuard]
   },
@@ -79,10 +83,6 @@ const routes: Routes = [
       {
         path: 'not-found',
         component: NotFoundComponent
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
       },
       {
         path: 'verify-security-questions',
