@@ -21,9 +21,12 @@ const router= express.Router();
 const serverError = "Internal server error";
 const querySuccess = "Query successful - ";
 const findAllSecurityQuestions = "find all security questions";
+const findSecurityQuestionById = "find security question by id";
 const createSecurityQuestion = "create security question";
 const updateSecurityQuestion = "update security question";
 const deleteSecurityQuestion = "delete security question"
+
+
 
 /**
  * API: findAllSecurityQuestions
@@ -206,7 +209,5 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+
 module.exports = router;
-
-
-
