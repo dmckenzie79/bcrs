@@ -13,11 +13,7 @@ const express = require('express');
 const SecurityQuestion = require('../models/security-question');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
-//const User = require('../models/user');
 const securityQuestionSchema = require('../models/security-question');
-//const { bluebird } = require('bluebird');
-//const { create } = require('../models/security-question');
-
 
 const router= express.Router();
 
@@ -25,12 +21,9 @@ const router= express.Router();
 const serverError = "Internal server error";
 const querySuccess = "Query successful - ";
 const findAllSecurityQuestions = "find all security questions";
-const findSecurityQuestionById = "find security question by id";
 const createSecurityQuestion = "create security question";
 const updateSecurityQuestion = "update security question";
 const deleteSecurityQuestion = "delete security question"
-
-
 
 /**
  * API: findAllSecurityQuestions
@@ -212,7 +205,6 @@ router.delete('/:id', async (req, res) => {
     res.status(500).send(DeleteSecurityQuestionCatchErrorResponse.toObject());
   }
 });
-
 
 module.exports = router;
 
