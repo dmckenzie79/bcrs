@@ -79,46 +79,6 @@ router.get('/', async(req, res) => {
   }
 });
 
- /**
- * API: createUser
-*/
-router.post('/', async(req, res) => {
-  try {
-    let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); //salt/hash the password
-    standardRole = {
-      role: 'standard'
-    };
-
-    //user object
-    let newUser = {
-      userName: req.body.userName,
-      password: hashedPassword,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      phoneNumber: req.body.phoneNumber,
-      address: req.body.address,
-      email: req.body.email,
-    };
-
-    User.create(newUser, function(err, user) {
-      if (err) {
-        console.log(err);
-        const createUserMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
-        res.status(500).send(createUserMongoDbErrorResponse.toObject());
-      } else {
-        console.log(user);
-        const createUserResponse = new BaseResponse(200, querySuccess + createUser, user);
-        res.json(createUserResponse.toObject());
-      }
-    });
-  } catch (e) {
-    console.log(e);
-    const createUserCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
-    res.status(500).send(createUserCatchErrorResponse.toObject());
-    }
-  });
-
-
  //update user
  router.put('/:id', async(req, res) => {
    try {
