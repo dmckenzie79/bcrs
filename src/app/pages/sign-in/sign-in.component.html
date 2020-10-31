@@ -12,7 +12,7 @@
   <div *ngIf="error" class ="text-warning">
     {{ error }}
   </div>
-  
+
 </div>
 
 
@@ -59,11 +59,11 @@
             <button class="submit" type="submit" (click)='signIn();' mat-raised-button>Sign in</button>
           </mat-card-actions>
 
-            <div class="password"><a routerLink="/forgot">Forgot Password</a></div>
+            <div class="password"><a routerLink="/session/forgot">Forgot Password</a></div>
 <br />
 <br />
             <div class="account">
-              <a routerLink="/register">Create an Account</a>
+              <a routerLink="/session/register">Create an Account</a>
             </div>
         </form>
       </mat-card-content>
