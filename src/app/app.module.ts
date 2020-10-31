@@ -49,6 +49,7 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { RegisterComponent } from './pages/register/register.component';
 import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
+import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
     ServerErrorComponent,
     RegisterComponent,
     VerifySecurityQuestionsFormComponent,
-    VerifyUsernameFormComponent
+    VerifyUsernameFormComponent,
+    ResetPasswordFormComponent
   ],
   imports: [
     BrowserModule,
