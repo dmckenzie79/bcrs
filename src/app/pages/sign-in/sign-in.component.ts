@@ -6,8 +6,9 @@
  ; Description: sign-in component
  ===========================================*/
 
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -23,7 +24,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class SignInComponent implements OnInit {
 
   form: FormGroup;
-  errorMessage: string;
+  error: string;
 
   constructor(private router: Router, private cookieService: CookieService,
     private fb: FormBuilder, private http: HttpClient) {
@@ -42,10 +43,7 @@ export class SignInComponent implements OnInit {
     const userName = this.form.controls.userName.value;
     const password = this.form.controls.password.value;
 
-    this.http.post('/api/session/signin', {
-      userName,
-      password
-    }).subscribe(res => {
+    this.http.post('/api/session/signin', { userName,password}).subscribe(res => {
       console.log(res['data']);
        if(res['data'].userName) {
          /**
@@ -57,7 +55,7 @@ export class SignInComponent implements OnInit {
         }
       }, err => {
       console.log(err);
-      this.errorMessage = err.message;
+      this.error = err.error.message;
     });
   }
 }

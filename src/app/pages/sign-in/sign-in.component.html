@@ -8,20 +8,27 @@
 
 <div fxLayout="column">
 <div class="bar">
-  <div fxFlex *ngIf="errorMessage" class ="text-warning">
-    {{ errorMessage }}
-    <button fxFlex mat-button mat-raised-button color="accent">
-      OK
-    </button>
+
+  <div *ngIf="error" class ="text-warning">
+    {{ error }}
   </div>
+  
 </div>
+
+
 
     <div fxFlex>
       <mat-card class="mat-elevation-z8 sign-in-container">
 
+
+
         <mat-card-title>
           Sign-in
         </mat-card-title>
+
+        <mat-card-subtitle>
+          You must enter a valid username/password to proceed
+        </mat-card-subtitle>
 
         <br />
 
@@ -62,4 +69,4 @@
       </mat-card-content>
       </mat-card>
     </div>
-  </div>
+</div>

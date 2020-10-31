@@ -5,15 +5,11 @@
 }
 
 .numeric-warning, .text-warning {
-  margin-top: 2%;
-  margin-left: 40%;
-  font-size: 1.2em;
+  margin: 10% auto;
   max-width: 500px;
   height: 50px;
-  background-color: white;
-  color: black;
+  color: red;
   text-align: center;
-
 }
 
 .sign-in-container {
@@ -56,4 +52,5 @@
   color: #80DEEA;
   font-size: 18px;
   font-weight: 500;
+  background-color: lavender;
 }
