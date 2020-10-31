@@ -23,6 +23,8 @@ const router= express.Router();
 //constants to pass into responses
 const serverError = "Internal server error";
 
+//saltrounds for hashing password
+const saltRounds = 10;
 /**
  * User sign-in
  */
@@ -151,4 +153,88 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
     res.status(500).send(verifySecurityQuestionsCatchErrorResponse.toObject());
   }
 })
+
+//Reset Password API
+
+router.post('users/:UserName/reset-password', async(req, res) => {
+  try {
+    const password = req.body.password;
+
+    User.findOne({'userName': req.params.userName}, function(err, user) {
+      if (err) {
+        console.log(err);
+        const resetPasswordMongodbErrorResponse = new ErrorResponse('500', 'Internal Server Error', err);
+        res.status(500).send(resetPasswordMongodbErrorResponse.toObject());
+      }
+      else {
+        console.log(user);
+
+        let hashedPassword = bcrypt.hashSync(password, saltRounds);
+
+        user.set({
+          password: hashedPassword
+        });
+
+        user.save(function(err, updatedUser) {
+          if (err) {
+            console.log(err);
+            const updatedUserMongodbErrorResponse = new ErrorResponse ('500', 'Internal Server Error', err);
+            res.status(500).send(updatedUserMongodbErrorResponse.toObject());
+          }
+          else {
+            console.log(updatedUser);
+            const updatedUserPasswordResponse = new BaseResponse ('200', 'Password Updated', updatedUser);
+            res.json(updatedUserPasswordResponse.toObject());
+          }
+        })
+      }
+    })
+  } catch (e) {
+    console.log(e);
+    const resetPasswordCatchErrorResponse = new ErrorResponse ('500', 'Internal Server Error', e.message);
+    res.status(500).send(resetPasswordCatchErrorResponse.toObject());
+  }
+});
+
+//account registration api
+router.post('/register', async(req, res) => {
+  try {
+    let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); //salt/hash the password
+    standardRole = {
+      role: 'standard'
+    };
+
+    //user object
+    let newUser = {
+      userName: req.body.userName,
+      password: hashedPassword,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phoneNumber: req.body.phoneNumber,
+      address: req.body.address,
+      email: req.body.email,
+      role: standardRole,
+      selectedSecurityQuestions: req.body.selectedSecurityQuestions
+    };
+
+    User.create(newUser, function(err, user) {
+      if (err) {
+        console.log(err);
+        const createUserMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
+        res.status(500).send(createUserMongoDbErrorResponse.toObject());
+      }
+      else {
+        console.log(user);
+        const createUserResponse = new BaseResponse(200, querySuccess + createUser, user);
+        res.json(createUserResponse.toObject());
+      }
+    });
+  }
+  catch (e) {
+    console.log(e);
+    const createUserCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
+    res.status(500).send(createUserCatchErrorResponse.toObject());
+  }
+});
+
 module.exports = router;
