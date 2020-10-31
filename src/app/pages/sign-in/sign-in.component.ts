@@ -9,7 +9,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -27,7 +26,7 @@ export class SignInComponent implements OnInit {
   errorMessage: string;
 
   constructor(private router: Router, private cookieService: CookieService,
-    private fb: FormBuilder, private http: HttpClient, private snackBar: MatSnackBar) {
+    private fb: FormBuilder, private http: HttpClient) {
 
     }
 
@@ -58,7 +57,7 @@ export class SignInComponent implements OnInit {
         }
       }, err => {
       console.log(err);
-      this.errorMessage = err.error.message;
+      this.errorMessage = err.message;
     });
   }
 }
