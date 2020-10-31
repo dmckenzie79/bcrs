@@ -68,7 +68,7 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent
-      },
+      }
     ],
     canActivate: [SessionGuard]
   },
@@ -80,13 +80,14 @@ const routes: Routes = [
         path: 'sign-in',
         component: SignInComponent
       },
-      {
-        path: 'not-found',
-        component: NotFoundComponent
-      },
+
       {
         path: 'verify-security-questions',
         component: VerifySecurityQuestionsFormComponent
+      },
+      {
+        path: 'not-found',
+        component: NotFoundComponent
       }
     ]
   },
