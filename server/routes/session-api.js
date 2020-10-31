@@ -156,7 +156,7 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
 
 //Reset Password API
 
-router.post('users/:UserName/reset-password', async(req, res) => {
+router.post('users/:userName/reset-password', async(req, res) => {
   try {
     const password = req.body.password;
 
@@ -197,44 +197,60 @@ router.post('users/:UserName/reset-password', async(req, res) => {
 });
 
 //account registration api
-router.post('/register', async(req, res) => {
+router.post('/register', async (req, res) => {
   try {
-    let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); //salt/hash the password
-    standardRole = {
-      role: 'standard'
-    };
-
-    //user object
-    let newUser = {
-      userName: req.body.userName,
-      password: hashedPassword,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      phoneNumber: req.body.phoneNumber,
-      address: req.body.address,
-      email: req.body.email,
-      role: standardRole,
-      selectedSecurityQuestions: req.body.selectedSecurityQuestions
-    };
-
-    User.create(newUser, function(err, user) {
+    User.findOne({'userName': req.body.userName}, function(err, user)
+    {
       if (err) {
         console.log(err);
-        const createUserMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
-        res.status(500).send(createUserMongoDbErrorResponse.toObject());
+        const registerUserMongodbErrorResponse = new ErrorResponse ('500', serverError, err);
+        res.status(500).send(registerUserMongodbErrorResponse.toObject());
       }
       else {
-        console.log(user);
-        const createUserResponse = new BaseResponse(200, querySuccess + createUser, user);
-        res.json(createUserResponse.toObject());
+        if (!user) {
+          let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
+          standardRole = {
+            role: 'standard'
+          }
+
+          let registeredUser = {
+            userName: req.body.userName,
+            password: hashedPassword,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phoneNumber: req.body.phoneNumber,
+            address: req.body.address,
+            email: req.body.email,
+            role: standardRole,
+            selectedSecurityQuestions: req.body.selectedSecurityQuestions
+          };
+
+          User.create(registeredUser, function(err, newUser)
+          {
+            if (err) {
+              console.log(err);
+              const newUserMongodbErrorResponse = new ErrorResponse('500', serverError, err);
+              res.status(500).send(newUserMongodbErrorResponse.toObject());
+            }
+            else {
+              console.log(newUser);
+              const registerUserSuccessResponse = new BaseResponse('200', 'User Added', newUser);
+              res.json(registerUserSuccessResponse.toObject());
+            }
+          })
+        }
+        else {
+          console.log('Username already in use');
+          const userNameInUseErrorResponse = new ErrorResponse('500', 'Username is already in use', null);
+          res.status(500).send(userNameInUseErrorResponse.toObject());
+        }
       }
-    });
-  }
-  catch (e) {
+    })
+  } catch (e) {
     console.log(e);
-    const createUserCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
-    res.status(500).send(createUserCatchErrorResponse.toObject());
+    const registerUserCatchErrorResponse = new ErrorResponse ('500', serverError, e.message);
+    res.status(500).send(registerUserCatchErrorResponse.toObject());
   }
-});
+})
 
 module.exports = router;
