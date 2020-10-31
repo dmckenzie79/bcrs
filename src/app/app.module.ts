@@ -97,7 +97,11 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 
 
   ],
-  providers: [SessionGuard, {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
