@@ -6,8 +6,6 @@
  ===========================================*/
 
  export interface SelectedSecurityQuestion {
-
-  text: string;
   questionText: string;
   answerText: string;
 }
