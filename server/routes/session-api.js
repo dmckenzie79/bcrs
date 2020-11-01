@@ -87,15 +87,19 @@ router.post('/signin', async(req, res) => {
   }
 });
 
-//Verify User Api
+/**
+ * VerifyUser
+ */
 
 router.get('/verify/users/:userName', async (req, res) => {
   try {
     User.findOne({'userName': req.params.userName}, function(err, user) {
 
+      console.log(req.params.userName);
+
       if (err) {
         console.log(err);
-        const verifyUserMongodbErrorResponse = new ErrorResponse('500', "Internal Server Error", err);
+        const verifyUserMongodbErrorResponse = new ErrorResponse('500', serverError, err);
         res.status(500).send(verifyUserMongodbErrorResponse.toObject());
       }
       else {
@@ -103,20 +107,22 @@ router.get('/verify/users/:userName', async (req, res) => {
         const verifyUserResponse = new BaseResponse('200', "User Successfully Verified", user);
         res.json(verifyUserResponse.toObject());
       }
-    })
+    });
   }
   catch (e) {
     console.log(e);
-    const verifyUserCatchErrorResponse = new ErrorResponse('500', 'Internal Server Error', e.message);
+    const verifyUserCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
     res.status(500).send(verifyUserCatchErrorResponse.toObject());
   }
-})
+});
 
-//Verify Security Questions API
+/**
+ * VerifySecurityQuestions
+ */
 
 router.post('/verify/users/:userName/security-questions', async (req, res) => {
   try {
-    User.findOne({'userName': req.params.UserName}, function(err, user){
+    User.findOne({'userName': req.params.userName}, function(err, user){
       if (err) {
         console.log(err);
         const verifySecurityQuestionsMongodbErrorResponse = new ErrorResponse('500', 'Internal Server Error', err);
@@ -124,7 +130,7 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
       }
       else {
         //find security question answer and set to new const
-        const selectedSecurityQuestionOne = user.selectedSecurityQuestions.find(q => q.questionText === req.body.questionText1);
+        const selectedSecurityQuestionOne = user.selectedSecurityQuestions.find(q1 => q1.questionText === req.body.questionText1);
         const selectedSecurityQuestionTwo = user.selectedSecurityQuestions.find(q2 => q2.questionText === req.body.questionText2);
         const selectedSecurityQuestionThree = user.selectedSecurityQuestions.find(q3 => q3.questionText === req.body.questionText3);
 
@@ -135,27 +141,29 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
 
         //Check if all three are correct
         if (isValidAnswerOne && isValidAnswerTwo && isValidAnswerThree) {
-          console.log('User ${user.userName} is verified');
+          console.log(`User ${user.userName} is verified`);
           const validSecurityQuestionResponse = new BaseResponse ('200', 'User Verified', user);
           res.json(validSecurityQuestionResponse.toObject());
         }
         else {
-          console.log('User ${user.userName} did not answer correctly');
+          console.log(`User ${user.userName} did not answer correctly`);
           const invalidSecurityQuestionResponse = new BaseResponse('200', 'Error: Incorrect Answer', user);
-          res.json(invalidSecurityQuestionResponse.toObject())
+          res.json(invalidSecurityQuestionResponse.toObject());
         }
 
       }
-    })
+    });
   }
   catch (e) {
     console.log(e);
     const verifySecurityQuestionsCatchErrorResponse = new ErrorResponse('500', 'Internal Server Error', e.message);
     res.status(500).send(verifySecurityQuestionsCatchErrorResponse.toObject());
   }
-})
+});
 
-//Reset Password API
+/**
+ * ResetPassword
+ */
 
 router.post('users/:userName/reset-password', async(req, res) => {
   try {
@@ -187,17 +195,18 @@ router.post('users/:userName/reset-password', async(req, res) => {
             const updatedUserPasswordResponse = new BaseResponse ('200', 'Password Updated', updatedUser);
             res.json(updatedUserPasswordResponse.toObject());
           }
-        })
+        });
       }
-    })
+    });
   } catch (e) {
     console.log(e);
     const resetPasswordCatchErrorResponse = new ErrorResponse ('500', 'Internal Server Error', e.message);
     res.status(500).send(resetPasswordCatchErrorResponse.toObject());
   }
 });
-
-//account registration api
+/**
+ * Register
+ */
 router.post('/register', async (req, res) => {
   try {
     User.findOne({'userName': req.body.userName}, function(err, user)
@@ -214,6 +223,7 @@ router.post('/register', async (req, res) => {
             role: 'standard'
           }
 
+              // user object
           let registeredUser = {
             userName: req.body.userName,
             password: hashedPassword,

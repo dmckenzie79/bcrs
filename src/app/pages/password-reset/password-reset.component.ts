@@ -14,7 +14,7 @@ export class PasswordResetComponent implements OnInit {
 
   form: FormGroup;
   passwordResetForm: FormGroup;
-  username: string;
+  userName: string;
   selectedSecurityQuestions: SecurityQuestion[];
   question1: string;
   question2: string;
@@ -24,7 +24,7 @@ export class PasswordResetComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private cookieService: CookieService) {
 
-    this.http.get('api/users/' + this.username + '/security-questions').subscribe(res => {
+    this.http.get('api/users/' + this.userName + '/security-questions').subscribe(res => {
       this.selectedSecurityQuestions = res['data'];
       console.log(this.selectedSecurityQuestions);
       console.log(res);
@@ -41,10 +41,10 @@ export class PasswordResetComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.passwordResetForm = new FormGroup({
       userName: new FormGroup({
-        username: new FormControl(null, Validators.required)
+        userName: new FormControl(null, Validators.required)
       }),
       securityQuestionVerification: new FormGroup({
         answerToSecurityQuestion1: new FormControl(null, Validators.required),

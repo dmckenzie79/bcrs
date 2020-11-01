@@ -21,10 +21,10 @@
        Verify Your Username
      </mat-card-title>
       <br><br>
-      <form [formGroup]="form" (ngSubmit)="validateUsername()" #validateUsernameForm>
+      <form [formGroup]="form" (ngSubmit)="validateUserName()" #validateUserNameForm>
         <mat-card-content fxLayout="column">
           <mat-form-field fxFlex>
-            <input matInput type="username" [formControl]="form.controls['username']" placeholder="Username">
+            <input matInput type="userName" [formControl]="form.controls['userName']" placeholder="Username">
           </mat-form-field>
           <br><br>
           <div fxLayoutAlign="end">
