@@ -9,7 +9,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+import { SecurityQuestion } from '../../shared/interfaces/security-question.interface'
 
 @Component({
   selector: 'app-verify-security-questions-form',
@@ -18,12 +19,12 @@ import { HttpClient } from '@angular/common/http'
 })
 export class VerifySecurityQuestionsFormComponent implements OnInit {
 
-  selectedSecurityQuestions: any //add interface
+  selectedSecurityQuestions: SecurityQuestion[]; //create interface
   question1: string;
   question2: string;
   question3: string;
   username: string;
-  resetPasswordForm: FormGroup;
+  form: FormGroup;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder) {
     this.username=this.route.snapshot.queryParamMap.get('username');
@@ -33,42 +34,33 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
       this.selectedSecurityQuestions = res['data'];
       console.log(this.selectedSecurityQuestions);
       console.log(res);
+
     }, err => {
-      console.log(err)
+      console.log(err);
     }, () => {
       this.question1 = this.selectedSecurityQuestions[0].questionText;
       this.question2 = this.selectedSecurityQuestions[1].questionText;
       this.question3 = this.selectedSecurityQuestions[2].questionText;
 
-      console.log(this.question1 + this.question2 + this.question3);
+
+      console.log(this.question1);
+      console.log(this.question2);
+      console.log(this.question3);
     });
    }
 
-  /*ngOnInit(): void {
+  ngOnInit(): void {
     this.form = this.fb.group({
       answerToSecurityQuestion1: [null, Validators.compose([Validators.required])],
       answerToSecurityQuestion2: [null, Validators.compose([Validators.required])],
       answerToSecurityQuestion3: [null, Validators.compose([Validators.required])]
     });
-  }*/
-
-  ngOnInit() {
-    this.resetPasswordForm = new FormGroup({
-      usernameEntry: new FormGroup({
-        username: new FormControl(null, Validators.required)
-      }),
-      securityQuestionAnswers: new FormGroup({
-        answerText1: new FormControl(null, Validators.required),
-        answerText2: new FormControl(null, Validators.required),
-        answerText3: new FormControl(null, Validators.required)
-      })
-    });
   }
 
-  verifySecurityQuestions() {
-    const answerToSecurityQuestion1 = this.resetPasswordForm.controls['answerToSecurityQuestion1'].value;
-    const answerToSecurityQuestion2 = this.resetPasswordForm.controls['answerToSecurityQuestion2'].value;
-    const answerToSecurityQuestion3 = this.resetPasswordForm.controls['answerToSecurityQuestion3'].value;
+   verifySecurityQuestions() {
+    const answerToSecurityQuestion1 = this.form.controls['answerToSecurityQuestion1'].value;
+    const answerToSecurityQuestion2 = this.form.controls['answerToSecurityQuestion2'].value;
+    const answerToSecurityQuestion3 = this.form.controls['answerToSecurityQuestion3'].value;
 
     console.log(answerToSecurityQuestion1 + answerToSecurityQuestion2 + answerToSecurityQuestion3);
 

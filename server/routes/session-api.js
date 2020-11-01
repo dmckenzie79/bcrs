@@ -14,6 +14,7 @@ const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
+//const cors = require('cors');
 
 
 //configurations

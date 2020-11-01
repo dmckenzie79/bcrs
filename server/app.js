@@ -14,6 +14,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const securityQuestionApi = require('./routes/security-questions-api'); //import the security questions API
 const UserApi = require('./routes/user-api'); //import the User API
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({'extended': true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../dist/bcrs')));
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
+//app.use(cors());
 
 /**
  * Variables

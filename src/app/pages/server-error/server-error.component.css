@@ -1,0 +1,15 @@
+h1 {
+  margin-top: 25%;
+  font-size: 720px;
+  color:#b39ddb;
+}
+
+img {
+  margin-top: 10%;
+}
+
+.error-explanation {
+  margin: 15% 15%;
+  padding: 15px;
+  background-color: #80ddea;
+}

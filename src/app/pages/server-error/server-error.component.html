@@ -1,1 +1,20 @@
-<p>server-error works!</p>
+
+<div fxLayout="column">
+  <div fxFlex fxLayoutAlign="start" class="error-container" fxLayout="row" matRipple>
+    <h1 fxFlex fxLayoutAlign="space-evenly">5</h1>
+    <img fxFlex fxLayoutAlign="space-evenly" src="../../../assets/gear1.svg">
+    <img fxFlex fxLayoutAlign="space-evently" src="../../../assets/gear2.svg">
+
+  </div>
+
+  <mat-card fxFlex fxLayoutAlign="space-between" class="error-explanation"fxLayout="row" fxLayoutGap="25%"
+  >
+       <p fxFlex>
+        Yikes! Our servers don't usually do that! We'll get that checked out right away.
+      </p>
+      <button fxFlex mat-button mat-raised-button routerLink="/" color="accent">
+        Home, please
+      </button>
+
+  </mat-card>
+</div>

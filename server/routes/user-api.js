@@ -15,7 +15,7 @@ const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
 const selectedSecurityQuestions = require('../models/selected-security-question');
-const { send } = require('process');
+
 
 
 
@@ -30,6 +30,7 @@ const findUserById = "find user by id";
 const createUser = "create user";
 const updateUser = "update user";
 const deleteUser = "delete user";
+const findSelectedSecurityQuestions = "find selected security questions"
 
  //find all
 router.get('/', async(req, res) => {
@@ -173,7 +174,7 @@ router.get('/', async(req, res) => {
        }
        else{
          console.log(user);
-         const findSelectedSecurityQuestionResponse = new BaseResponse('200', querySuccess, user.selectedSecurityQuestions);
+         const findSelectedSecurityQuestionResponse = new BaseResponse('200', querySuccess + findSelectedSecurityQuestions, user.selectedSecurityQuestions);
          res.json(findSelectedSecurityQuestionResponse.toObject());
        }
      });
