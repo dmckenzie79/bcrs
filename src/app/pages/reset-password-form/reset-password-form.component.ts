@@ -23,14 +23,17 @@ export class ResetPasswordFormComponent implements OnInit {
   username: string;
   form: FormGroup;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private cookieService: CookieService) {
+  constructor(private http: HttpClient,  private route: ActivatedRoute, private fb: FormBuilder, private cookieService: CookieService, private router: Router) {
     this.isAuthenticated = this.route.snapshot.queryParamMap.get('isAuthenticated');
+    console.log(this.isAuthenticated);
     this.username = this.route.snapshot.queryParamMap.get('username');
+    console.log(this.route.snapshot.queryParams);
+    console.log(this.username);
 
-    if(!this.isAuthenticated) {
-      this.router.navigate(['/session/sign-in'])
-    }
-   }
+    /*if(!this.isAuthenticated) {
+      this.router.navigate(['/session/sign-in']);
+    }*/
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -39,7 +42,8 @@ export class ResetPasswordFormComponent implements OnInit {
   }
 
   resetPassword() {
-    this.http.post('api/session/users/' + this.username + '/reset-password', {
+    console.log(this.username);
+    this.http.post('api/session/users/' + this.username + '/reset-password/', {
       password: this.form.controls['password'].value
     }).subscribe(res => {
       //user has been authenticated - we can allow access

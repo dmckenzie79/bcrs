@@ -74,7 +74,8 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
     }).subscribe( res => {
       console.log(res);
       if(res['message'] === 'Success') {
-        this.router.navigate(['/session/reset-password', {queryParams: {isAuthenticated: 'true', username: this.username}, skipLocationChange: true}])
+        this.router.navigate(['/session/reset-password'], {queryParams: {isAuthenticated: 'true', username: this.username}, skipLocationChange: true});
+
       } else {
         console.log('Unable to verify security question responses')
       }

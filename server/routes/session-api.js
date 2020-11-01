@@ -158,7 +158,7 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
 
 //Reset Password API
 
-router.post('users/:userName/reset-password', async(req, res) => {
+router.post('/users/:userName/reset-password', async(req, res) => {
   try {
     const password = req.body.password;
 
