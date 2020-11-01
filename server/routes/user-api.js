@@ -30,7 +30,7 @@ const findUserById = "find user by id";
 const createUser = "create user";
 const updateUser = "update user";
 const deleteUser = "delete user";
-const findSelectedSecurityQuestions = "find selected security questions"
+const findSelectedSecurityQuestions = "find selected security questions";
 
  //find all
 router.get('/', async(req, res) => {
@@ -75,7 +75,7 @@ router.get('/', async(req, res) => {
   } catch (e) {
     console.log(e);
 
-    const errorCatchResponse = new ErrorResponse('500', serverError, err)
+    const errorCatchResponse = new ErrorResponse('500', serverError, err);
     res.status(500).send(errorCatchResponse.toObject());
   }
 });

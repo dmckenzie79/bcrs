@@ -20,15 +20,12 @@ import { CookieService } from 'ngx-cookie-service';
 export class ResetPasswordFormComponent implements OnInit {
 
   isAuthenticated: string;
-  username: string;
+  userName: string;
   form: FormGroup;
 
   constructor(private http: HttpClient,  private route: ActivatedRoute, private fb: FormBuilder, private cookieService: CookieService, private router: Router) {
     this.isAuthenticated = this.route.snapshot.queryParamMap.get('isAuthenticated');
-    console.log(this.isAuthenticated);
-    this.username = this.route.snapshot.queryParamMap.get('username');
-    console.log(this.route.snapshot.queryParams);
-    console.log(this.username);
+    this.userName = this.route.snapshot.queryParamMap.get('userName');
 
     /*if(!this.isAuthenticated) {
       this.router.navigate(['/session/sign-in']);
@@ -42,12 +39,11 @@ export class ResetPasswordFormComponent implements OnInit {
   }
 
   resetPassword() {
-    console.log(this.username);
-    this.http.post('api/session/users/' + this.username + '/reset-password/', {
+    this.http.post('api/session/users/' + this.userName + '/reset-password', {
       password: this.form.controls['password'].value
     }).subscribe(res => {
       //user has been authenticated - we can allow access
-      this.cookieService.set('sessionuser', this.username, 1);
+      this.cookieService.set('session_user', this.userName, 1);
       this.router.navigate(['/']);
     }, err => {
       console.log(err);
