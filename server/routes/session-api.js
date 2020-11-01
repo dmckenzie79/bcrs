@@ -14,6 +14,7 @@ const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
+const selectedSecurityQuestions = require('../models/selected-security-question');
 //const cors = require('cors');
 
 
@@ -142,7 +143,7 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
         //Check if all three are correct
         if (isValidAnswerOne && isValidAnswerTwo && isValidAnswerThree) {
           console.log(`User ${user.userName} is verified`);
-          const validSecurityQuestionResponse = new BaseResponse ('200', 'User Verified', user);
+          const validSecurityQuestionResponse = new BaseResponse ('200', 'Success', user);
           res.json(validSecurityQuestionResponse.toObject());
         }
         else {
