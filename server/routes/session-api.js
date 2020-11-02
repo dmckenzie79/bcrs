@@ -143,7 +143,7 @@ router.post('/verify/users/:userName/security-questions', async (req, res) => {
         //Check if all three are correct
         if (isValidAnswerOne && isValidAnswerTwo && isValidAnswerThree) {
           console.log(`User ${user.userName} is verified`);
-          const validSecurityQuestionResponse = new BaseResponse ('200', 'Success', user);
+          const validSecurityQuestionResponse = new BaseResponse ('200', 'success', user);
           res.json(validSecurityQuestionResponse.toObject());
         }
         else {
