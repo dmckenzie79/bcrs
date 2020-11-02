@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class VerifyUsernameFormComponent implements OnInit {
 
   form: FormGroup;
+  //frmStepOne: FormGroup;
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
 
@@ -26,7 +27,12 @@ export class VerifyUsernameFormComponent implements OnInit {
     this.form = this.fb.group({
       userName: [null, Validators.compose([Validators.required])]
     });
-  }
+
+    //stepper form
+    /*this.frmStepOne = this.fb.group({
+      userName: [null, Validators.compose([Validators.required])]
+  });*/
+}
 
   validateUserName() {
     const userName = this.form.controls['userName'].value;
@@ -40,3 +46,4 @@ export class VerifyUsernameFormComponent implements OnInit {
     });
   }
 }
+

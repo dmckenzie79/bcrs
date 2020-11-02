@@ -22,6 +22,7 @@ export class ResetPasswordFormComponent implements OnInit {
   isAuthenticated: string;
   userName: string;
   form: FormGroup;
+  //frmStepThree: FormGroup; may be necessary for stepper
 
   constructor(private http: HttpClient,  private route: ActivatedRoute, private fb: FormBuilder, private cookieService: CookieService, private router: Router) {
     this.isAuthenticated = this.route.snapshot.queryParamMap.get('isAuthenticated');
@@ -36,10 +37,15 @@ export class ResetPasswordFormComponent implements OnInit {
     this.form = this.fb.group({
       password: [null, Validators.compose([Validators.required])]
     });
+
+    //stepper form
+    /*this.frmStepThree = this.fb.group({
+      password: [null, Validators.compose([Validators.required])]
+    });*/
   }
 
   resetPassword() {
-    this.http.post('api/session/users/' + this.userName + '/reset-password', {
+    this.http.post('/api/session/users/' + this.userName + '/reset-password', {
       password: this.form.controls['password'].value
     }).subscribe(res => {
       //user has been authenticated - we can allow access

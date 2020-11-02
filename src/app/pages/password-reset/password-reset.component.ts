@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SecurityQuestion } from '../../shared/interfaces/security-question.interface';
+import { VerifyUsernameFormComponent } from '../verify-username-form/verify-username-form.component';
+import { VerifySecurityQuestionsFormComponent } from '../verify-security-questions-form/verify-security-questions-form.component';
+import { ResetPasswordFormComponent } from '../reset-password-form/reset-password-form.component';
+import { MatStepper } from '@angular/material/stepper';
+
 
 @Component({
   selector: 'app-password-reset',
@@ -12,51 +17,37 @@ import { SecurityQuestion } from '../../shared/interfaces/security-question.inte
 })
 export class PasswordResetComponent implements OnInit {
 
-  form: FormGroup;
-  passwordResetForm: FormGroup;
-  userName: string;
-  selectedSecurityQuestions: SecurityQuestion[];
-  question1: string;
-  question2: string;
-  question3: string;
-  errorMessage: string;
+  //idea to use ViewChild came from here https://stackblitz.com/edit/angular-vpoj5j?file=app%2Fcreate-profile.component.ts
 
+  @ViewChild('VerifyUsernameFormComponent') VerifyUsernameFormComponent: VerifyUsernameFormComponent;
+  @ViewChild('VerifySecurityQuestionsFormComponent') VerifySecurityQuestionsComponent: VerifySecurityQuestionsFormComponent;
+  @ViewChild('ResetPasswordFormComponent') ResetPasswordFormComponent: ResetPasswordFormComponent;
 
-  constructor(private http: HttpClient, private router: Router, private fb: FormBuilder, private cookieService: CookieService) {
+  getfrmStepOne() {
+    return this.VerifyUsernameFormComponent ? this.VerifyUsernameFormComponent.form : null;
+  }
 
-    this.http.get('api/users/' + this.userName + '/security-questions').subscribe(res => {
-      this.selectedSecurityQuestions = res['data'];
-      console.log(this.selectedSecurityQuestions);
-      console.log(res);
-    }, err => {
-      console.log(err);
-    }, () => {
-      this.question1 = this.selectedSecurityQuestions[0].text;
-      this.question2 = this.selectedSecurityQuestions[1].text;
-      this.question3 = this.selectedSecurityQuestions[2].text;
+  getfrmStepTwo() {
+    return this.VerifySecurityQuestionsComponent ? this.VerifySecurityQuestionsComponent.form : null;
+  }
 
-      console.log(this.question1);
-      console.log(this.question2);
-      console.log(this.question3);
-    });
+  getfrmStepThree() {
+    return this.ResetPasswordFormComponent ? this.ResetPasswordFormComponent.form : null;
+  }
+
+  constructor(private fb: FormBuilder) {
+
   }
 
   ngOnInit() {
-    this.passwordResetForm = new FormGroup({
-      userName: new FormGroup({
-        userName: new FormControl(null, Validators.required)
-      }),
-      securityQuestionVerification: new FormGroup({
-        answerToSecurityQuestion1: new FormControl(null, Validators.required),
-        answerToSecurityQuestion2: new FormControl(null, Validators.required),
-        answerToSecurityQuestion3: new FormControl(null, Validators.required)
-      }),
-      password: new FormGroup({
-        password: new FormControl(null, Validators.required)
-      })
-    });
+
   }
 
-}
 
 
+  }
+
+
+
+
+*/

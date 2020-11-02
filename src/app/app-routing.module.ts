@@ -26,6 +26,7 @@ import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-qu
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ServerErrorComponent } from './pages/server-error/server-error.component';
+//import { PasswordResetComponent } from './pages/password-reset/password-reset.component'
 
 const routes: Routes = [
   {
@@ -102,7 +103,11 @@ const routes: Routes = [
       {
         path: '500',
         component: ServerErrorComponent
-      }
+      },
+      /*{
+        path: 'password-test',
+        component: PasswordResetComponent
+      }*/
     ]
   },
   {

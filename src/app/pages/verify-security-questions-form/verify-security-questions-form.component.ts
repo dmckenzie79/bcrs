@@ -25,6 +25,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
   question3: string;
   userName: string;
   form: FormGroup;
+  //frmStepTwo: FormGroup; may be necessary for stepper
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder) {
     this.userName = this.route.snapshot.queryParamMap.get('userName');
@@ -55,6 +56,13 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
       answerToSecurityQuestion2: [null, Validators.compose([Validators.required])],
       answerToSecurityQuestion3: [null, Validators.compose([Validators.required])]
     });
+
+    //stepper form
+    /*this.frmStepTwo = this.fb.group({
+      answerToSecurityQuestion1: [null, Validators.compose([Validators.required])],
+      answerToSecurityQuestion2: [null, Validators.compose([Validators.required])],
+      answerToSecurityQuestion3: [null, Validators.compose([Validators.required])]
+    });*/
   }
 
    verifySecurityQuestions() {
@@ -76,7 +84,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
     }).subscribe( res => {
       console.log(res);
       if(res['message'] === 'success') {
-        this.router.navigate(['/session/reset-password', {queryParams: {isAuthenticated: 'true', userName: this.userName}, skipLocationChange: true}])
+        this.router.navigate(['/session/reset-password'], {queryParams: {isAuthenticated: 'true', userName: this.userName}, skipLocationChange: true})
       } else {
         console.log('Unable to verify security question responses')
       }
