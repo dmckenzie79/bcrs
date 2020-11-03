@@ -1,1 +1,11 @@
 
+mat-card {
+  width: 25%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+mat-card-title {
+  text-align: center;
+  font-weight: lighter;
+}

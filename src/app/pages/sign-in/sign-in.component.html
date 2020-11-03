@@ -36,34 +36,39 @@
 
         <form class="form" [formGroup]="form" (ngSubmit)="signIn(); form.reset();" #loginForm="ngForm">
           <div>
-            <label for="User name" class="label">Username:</label>
+            <mat-form-field>
+            <mat-label for="User name">Username:</mat-label>
               <input
                     type="text"
                     matInput
                     [formControl]="form.controls['userName']"
                     placeholder="Enter Username"
-                    class="input" />
+                    />
+            </mat-form-field>
           </div>
 
 
-            <div><label for="password" class="label">Password:</label>
+            <div>
+              <mat-form-field>
+                <mat-label for="password">Password:</mat-label>
               <input
                     type="text"
                     matInput
                     [formControl]="form.controls['password']"
-                    placeholder="password"
-                    class="input" />
+                    placeholder="Enter Password"
+                   />
+                  </mat-form-field>
             </div>
 
           <mat-card-actions>
-            <button class="submit" type="submit" (click)='signIn();' mat-raised-button>Sign in</button>
+            <button type="submit" (click)='signIn();' mat-raised-button color='accent'>Sign in</button>
           </mat-card-actions>
 
             <div class="password"><a routerLink="/session/forgot">Forgot Password</a></div>
 <br />
 <br />
             <div class="account">
-              <a routerLink="/session/register">Create an Account</a>
+              <a color='primary' routerLink="/session/register">Create an Account</a>
             </div>
         </form>
       </mat-card-content>

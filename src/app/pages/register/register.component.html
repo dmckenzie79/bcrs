@@ -143,7 +143,7 @@
         </mat-list>
 
           <div fxLayoutAlign="end">
-            <button mat-raised-button color="accent" matStepperPrevious>Back</button> &nbsp;
+            <button mat-raised-button color="primary" matStepperPrevious>Back</button> &nbsp;
             <button mat-raised-button color="accent" matStepperNext>Next</button>
           </div>
         </mat-step>
@@ -173,12 +173,12 @@
           </mat-list>
 
           <div fxLayoutAlign="end">
-            <button mat-raised-button color="accent" matStepperPrevious>Back</button> &nbsp;
+            <button mat-raised-button color="primary" matStepperPrevious>Back</button> &nbsp;
             <button mat-raised-button (click)="register(registrationForm.value)" color="accent" [disabled]="!registrationForm.valid" type="submit">Submit</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
-      <a routerLink="/" class="return">Return</a>
+      <button mat-raised-button routerLink="/" color='primary' class="return">Return</button>
     </mat-card-content>
   </form>
   </mat-card>
