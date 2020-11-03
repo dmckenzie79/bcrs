@@ -19,7 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SessionGuard } from './shared/guard/session.guard';
@@ -42,6 +42,15 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ServerErrorComponent } from './pages/server-error/server-error.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { RegisterComponent } from './pages/register/register.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
+import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
+import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
+//import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +69,12 @@ import { ServerErrorComponent } from './pages/server-error/server-error.componen
     AboutComponent,
     ContactComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    RegisterComponent,
+    VerifySecurityQuestionsFormComponent,
+    VerifyUsernameFormComponent,
+    ResetPasswordFormComponent,
+    //PasswordResetComponent
   ],
   imports: [
     BrowserModule,
@@ -80,11 +94,18 @@ import { ServerErrorComponent } from './pages/server-error/server-error.componen
     MatDialogModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatListModule
 
 
   ],
-  providers: [SessionGuard],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

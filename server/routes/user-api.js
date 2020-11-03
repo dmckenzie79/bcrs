@@ -14,6 +14,8 @@ const bcrypt = require('bcryptjs');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
+const selectedSecurityQuestions = require('../models/selected-security-question');
+
 
 
 
@@ -27,7 +29,8 @@ const findAllUsers = "find all users";
 const findUserById = "find user by id";
 const createUser = "create user";
 const updateUser = "update user";
-const deleteUser = "delete user"
+const deleteUser = "delete user";
+const findSelectedSecurityQuestions = "find selected security questions";
 
  //find all
 router.get('/', async(req, res) => {
@@ -72,50 +75,10 @@ router.get('/', async(req, res) => {
   } catch (e) {
     console.log(e);
 
-    const errorCatchResponse = new ErrorResponse('500', serverError, err)
+    const errorCatchResponse = new ErrorResponse('500', serverError, err);
     res.status(500).send(errorCatchResponse.toObject());
   }
 });
-
- /**
- * API: createUser
-*/
-router.post('/', async(req, res) => {
-  try {
-    let hashedPassword = bcrypt.hashSync(req.body.password, saltRounds); //salt/hash the password
-    standardRole = {
-      role: 'standard'
-    };
-
-    //user object
-    let newUser = {
-      userName: req.body.userName,
-      password: hashedPassword,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      phoneNumber: req.body.phoneNumber,
-      address: req.body.address,
-      email: req.body.email,
-    };
-
-    User.create(newUser, function(err, user) {
-      if (err) {
-        console.log(err);
-        const createUserMongoDbErrorResponse = new ErrorResponse(500, serverError, err);
-        res.status(500).send(createUserMongoDbErrorResponse.toObject());
-      } else {
-        console.log(user);
-        const createUserResponse = new BaseResponse(200, querySuccess + createUser, user);
-        res.json(createUserResponse.toObject());
-      }
-    });
-  } catch (e) {
-    console.log(e);
-    const createUserCatchErrorResponse = new ErrorResponse(500, serverError, e.message);
-    res.status(500).send(createUserCatchErrorResponse.toObject());
-    }
-  });
-
 
  //update user
  router.put('/:id', async(req, res) => {
@@ -194,7 +157,34 @@ router.post('/', async(req, res) => {
   }
 });
 
+/**
+ * FindSelectedSecurityQuestion
+ */
 
+ router.get('/:userName/security-questions', async (req, res) => {
+   try
+   {
+     User.findOne({'userName': req.params.userName}, function(err, user)
+     {
+       if (err)
+       {
+         console.log(err);
+         const findSelectedSecurityQuestionsMongoDbErrorResponse = new ErrorResponse('500', serverError, err);
+         res.status(500).send(findSelectedSecurityQuestionsMongoDbErrorResponse.toObject());
+       }
+       else{
+         console.log(user);
+         const findSelectedSecurityQuestionResponse = new BaseResponse('200', querySuccess + findSelectedSecurityQuestions, user.selectedSecurityQuestions);
+         res.json(findSelectedSecurityQuestionResponse.toObject());
+       }
+     });
+   }
+   catch(e) {
+     console.log(e);
+     const findSelectedSecurityQuestionCatchErrorResponse = new ErrorResponse('500', serverError, e.message);
+     res.status(500).send(findSelectedSecurityQuestionCatchErrorResponse.toObject());
 
+    }
+ });
 
  module.exports = router;

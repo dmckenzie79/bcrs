@@ -13,11 +13,7 @@ const express = require('express');
 const SecurityQuestion = require('../models/security-question');
 const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
-//const User = require('../models/user');
-const securityQuestionSchema = require('../models/security-question');
-//const { bluebird } = require('bluebird');
-//const { create } = require('../models/security-question');
-
+const securityQuestionSchema = require('../schemas/selected-security-question');
 
 const router= express.Router();
 
@@ -215,6 +211,3 @@ router.delete('/:id', async (req, res) => {
 
 
 module.exports = router;
-
-
-

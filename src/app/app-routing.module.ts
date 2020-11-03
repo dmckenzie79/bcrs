@@ -21,6 +21,12 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
+import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
+import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
+import { ServerErrorComponent } from './pages/server-error/server-error.component';
+//import { PasswordResetComponent } from './pages/password-reset/password-reset.component'
 
 const routes: Routes = [
   {
@@ -75,9 +81,33 @@ const routes: Routes = [
         component: SignInComponent
       },
       {
-        path: 'not-found',
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
+        path: 'verify-security-questions',
+        component: VerifySecurityQuestionsFormComponent
+      },
+      {
+        path: 'forgot',
+        component: VerifyUsernameFormComponent
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordFormComponent
+      },
+      {
+        path: '404',
         component: NotFoundComponent
-      }
+      },
+      {
+        path: '500',
+        component: ServerErrorComponent
+      },
+      /*{
+        path: 'password-test',
+        component: PasswordResetComponent
+      }*/
     ]
   },
   {
