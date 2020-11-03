@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-verify-username-form',
@@ -21,7 +22,7 @@ export class VerifyUsernameFormComponent implements OnInit {
   form: FormGroup;
   //frmStepOne: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
+  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -40,6 +41,8 @@ export class VerifyUsernameFormComponent implements OnInit {
     this.http.get('/api/session/verify/users/' + userName).subscribe(res => { // corrected typo
       if(res) {
         this.router.navigate(['/session/verify-security-questions'], {queryParams: {userName: userName}, skipLocationChange: true});
+      } else {
+        this.snackbar.open(`${userName} is not a valid username`);
       }
     }, err => {
       console.log(err);
