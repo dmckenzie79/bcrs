@@ -29,7 +29,7 @@
           <br><br>
           <div fxLayoutAlign="end">
             <button mat-raised-button color="primary" routerLink="/">Back to home</button>
-            <button mat-raised-button color="accent">Submit</button>
+            <button mat-raised-button color="accent" [disabled]="!form.valid">Submit</button>
           </div>
         </mat-card-content>
       </form>

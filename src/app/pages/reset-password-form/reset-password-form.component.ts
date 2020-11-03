@@ -28,12 +28,13 @@ export class ResetPasswordFormComponent implements OnInit {
     this.isAuthenticated = this.route.snapshot.queryParamMap.get('isAuthenticated');
     this.userName = this.route.snapshot.queryParamMap.get('userName');
 
-    /*if(!this.isAuthenticated) {
-      this.router.navigate(['/session/sign-in']);
-    }*/
   }
 
   ngOnInit(): void {
+    if(!this.isAuthenticated) {
+      this.router.navigate(['/session/sign-in']);
+    }
+
     this.form = this.fb.group({
       password: [null, Validators.compose([Validators.required])]
     });
