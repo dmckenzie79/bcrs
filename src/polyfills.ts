@@ -1,3 +1,10 @@
+/* ============================================
+ ; Title:  app-routing.module.ts
+ ; Author: Zach Dahir, Jeff Lintel, Diandra McKenzie
+ ; Date:   19 October 2020
+ ; Description: app routing module
+ ===========================================*/
+
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
