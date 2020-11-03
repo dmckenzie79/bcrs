@@ -1,3 +1,10 @@
+/* ============================================
+ ; Title:  app-routing.module.ts
+ ; Author: Zach Dahir, Jeff Lintel, Diandra McKenzie
+ ; Date:   19 October 2020
+ ; Description: app routing module
+ ===========================================*/
+
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
 import 'zone.js/dist/zone-testing';
