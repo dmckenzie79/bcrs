@@ -1,3 +1,12 @@
+/* ============================================
+ ; Title:  password-rest.component.ts
+ ; Author: Jeff Lintel
+ ; Date:   29 October 2020
+ ; Description: password reset component
+ ===========================================*/
+
+
+
 /*import { Component, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';

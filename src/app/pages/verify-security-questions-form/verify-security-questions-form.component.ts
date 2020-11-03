@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SecurityQuestion } from '../../shared/interfaces/security-question.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-verify-security-questions-form',
@@ -27,7 +28,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
   form: FormGroup;
   //frmStepTwo: FormGroup; may be necessary for stepper
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder, private snackbar: MatSnackBar) {
     this.userName = this.route.snapshot.queryParamMap.get('userName');
     console.log(this.userName);
 
@@ -87,6 +88,7 @@ export class VerifySecurityQuestionsFormComponent implements OnInit {
         this.router.navigate(['/session/reset-password'], {queryParams: {isAuthenticated: 'true', userName: this.userName}, skipLocationChange: true})
       } else {
         console.log('Unable to verify security question responses')
+        this.snackbar.open('Unable to verify security question responses', 'Invalid answers');
       }
     })
   }

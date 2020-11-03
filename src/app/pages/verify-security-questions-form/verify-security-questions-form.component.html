@@ -48,7 +48,7 @@
           <div fxFlex fxLayoutAlign="end" fxLayout="row">
             <a fxLayoutAlign="start" routerLink="/"  color="primary">Home</a>
             <button fxFlex fxLayoutAlign="space-between" routerLink="/session/forgot" mat-raised-button color="primary">Back</button>
-            <button fxFlex fxLayoutAlign="space-between" mat-raised-button color="accent">Submit</button>
+            <button fxFlex fxLayoutAlign="space-between" mat-raised-button color="accent" [disabled]="!form.valid">Submit</button>
           </div>
         </mat-card-content>
       </form>
