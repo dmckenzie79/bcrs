@@ -22,7 +22,7 @@ export class UserDetailsComponent implements OnInit {
   user: User;
   userId: string;
   form: FormGroup;
-  roles: any;
+  roles: Role[];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder, private router: Router, private userService: UserService) {
     this.userId = this.route.snapshot.paramMap.get('userId');
