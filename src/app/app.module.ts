@@ -51,6 +51,7 @@ import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-qu
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ChartModule } from 'primeng/chart';
+import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/invoice-summary-dialog.component';
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 
 @NgModule({
@@ -75,6 +76,7 @@ import { ChartModule } from 'primeng/chart';
     VerifySecurityQuestionsFormComponent,
     VerifyUsernameFormComponent,
     ResetPasswordFormComponent,
+    InvoiceSummaryDialogComponent,
     //PasswordResetComponent
   ],
   imports: [
@@ -99,7 +101,8 @@ import { ChartModule } from 'primeng/chart';
     MatSelectModule,
     MatStepperModule,
     MatListModule,
-    ChartModule
+    ChartModule,
+
 
 
   ],
