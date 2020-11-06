@@ -20,6 +20,7 @@ const securityQuestionApi = require('./routes/security-questions-api'); //import
 const UserApi = require('./routes/user-api'); //import the User API
 const SessionApi = require('./routes/session-api'); //import the session API
 const RoleApi = require('./routes/role-api'); //import the role API
+const InvoiceApi = require('./routes/invoice-api');
 
 /**
  * App configurations
@@ -62,6 +63,7 @@ app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
 app.use('/api/roles', RoleApi);
 
+app.use('/api/invoice', InvoiceApi);
 /**
  * Create and start server
  */
