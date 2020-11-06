@@ -10,7 +10,7 @@ import { BaseLayoutComponent } from './shared/base-layout/base-layout.component'
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
-import { SessionGuard } from './shared/guard/session.guard';
+import { SessionGuard } from './shared/guards/session.guard';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
@@ -26,6 +26,7 @@ import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-qu
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ServerErrorComponent } from './pages/server-error/server-error.component';
+import { RoleGuard } from './shared/guards/role.guard';
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component'
 
 const routes: Routes = [

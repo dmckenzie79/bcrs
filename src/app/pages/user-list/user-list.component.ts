@@ -9,7 +9,7 @@
  import { MatDialog } from '@angular/material/dialog';
  import { HttpClient } from '@angular/common/http';
  import { UserService } from './../../shared/services/user.service';
- import { User } from './../../../user.interface';
+ import { User } from './../../shared/interfaces/user.interface';
  import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 

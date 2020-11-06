@@ -17,6 +17,16 @@
           </mat-form-field>
 
           <mat-form-field>
+            <mat-select [formControl]="form.controls['role']"
+                        placeholder="Role">
+              <mat-option *ngFor="let role of roles"
+                          value="role.text">
+                          {{ role.text }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
             <input type="text" matInput [formControl]="form.controls['phoneNumber']"
                    placeholder="Phone number"/>
           </mat-form-field>

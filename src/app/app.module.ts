@@ -22,7 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SessionGuard } from './shared/guard/session.guard';
+import { SessionGuard } from './shared/guards/session.guard';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CookieService } from 'ngx-cookie-service';
