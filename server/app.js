@@ -19,6 +19,7 @@ const cors = require('cors');
 const securityQuestionApi = require('./routes/security-questions-api'); //import the security questions API
 const UserApi = require('./routes/user-api'); //import the User API
 const SessionApi = require('./routes/session-api'); //import the session API
+const InvoiceApi = require('./routes/invoice-api');
 
 /**
  * App configurations
@@ -59,7 +60,7 @@ mongoose.connect(conn, {
 app.use('/api/security-questions', securityQuestionApi);
 app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
-
+app.use('/api/invoice', InvoiceApi);
 /**
  * Create and start server
  */
