@@ -1,0 +1,28 @@
+mat-card {
+  width: 50%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+th {
+  font-size: 20px;
+}
+
+mat-card-subtitle {
+  margin: auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 75%;
+}
+
