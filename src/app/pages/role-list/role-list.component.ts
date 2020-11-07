@@ -8,6 +8,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 import { RoleService } from 'src/app/shared/services/role.service';
 import { Role } from '../../shared/interfaces/role.interface';
 import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';

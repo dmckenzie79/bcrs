@@ -52,6 +52,10 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ChartModule } from 'primeng/chart';
 import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/invoice-summary-dialog.component';
+import { RoleListComponent } from './pages/role-list/role-list.component';
+import { RoleDetailsComponent } from './pages/role-details/role-details.component';
+import { RoleCreateComponent } from './pages/role-create/role-create.component';
+
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 
 @NgModule({
@@ -77,6 +81,10 @@ import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/i
     VerifyUsernameFormComponent,
     ResetPasswordFormComponent,
     InvoiceSummaryDialogComponent,
+    RoleListComponent,
+    RoleDetailsComponent,
+    RoleCreateComponent
+
     //PasswordResetComponent
   ],
   imports: [
@@ -101,11 +109,7 @@ import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/i
     MatSelectModule,
     MatStepperModule,
     MatListModule,
-    ChartModule,
-
-
-
-  ],
+    ChartModule  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true

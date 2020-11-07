@@ -27,6 +27,10 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ServerErrorComponent } from './pages/server-error/server-error.component';
 import { RoleGuard } from './shared/guards/role.guard';
+import { RoleListComponent } from './pages/role-list/role-list.component';
+import { RoleDetailsComponent } from './pages/role-details/role-details.component';
+import { RoleCreateComponent } from './pages/role-create/role-create.component';
+
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component'
 
 const routes: Routes = [
@@ -69,7 +73,20 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
+      },
+      {
+        path: 'roles',
+        component: RoleListComponent
+      },
+      {
+        path: 'roles/create/new',
+        component: RoleCreateComponent
+      },
+      {
+        path: 'roles/:roleId',
+        component: RoleDetailsComponent
       }
+
     ],
     canActivate: [SessionGuard]
   },
