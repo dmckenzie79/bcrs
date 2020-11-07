@@ -27,6 +27,7 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ServerErrorComponent } from './pages/server-error/server-error.component';
 import { RoleGuard } from './shared/guards/role.guard';
+import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component'
 
 const routes: Routes = [
@@ -37,6 +38,11 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'purchase-graph',
+        component: PurchasesByServiceGraphComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'security-questions',

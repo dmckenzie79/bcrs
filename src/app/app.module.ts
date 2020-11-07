@@ -52,6 +52,7 @@ import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ChartModule } from 'primeng/chart';
 import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/invoice-summary-dialog.component';
+import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 
 @NgModule({
@@ -77,6 +78,7 @@ import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/i
     VerifyUsernameFormComponent,
     ResetPasswordFormComponent,
     InvoiceSummaryDialogComponent,
+    PurchasesByServiceGraphComponent,
     //PasswordResetComponent
   ],
   imports: [

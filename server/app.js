@@ -62,7 +62,7 @@ app.use('/api/security-questions', securityQuestionApi);
 app.use('/api/users', UserApi);
 app.use('/api/session', SessionApi);
 app.use('/api/roles', RoleApi);
-app.use('/api/invoice', InvoiceApi);
+app.use('/api/invoices', InvoiceApi); //added s to match service
 
 /**
  * Create and start server
