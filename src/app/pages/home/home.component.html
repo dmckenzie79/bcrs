@@ -15,8 +15,7 @@
         <h4 fxFlex>Services</h4>
         <div ngModelGroup="checkGroup" *ngFor="let service of services">
           <mat-checkbox name="{{ service.id }}" ngModel>
-            {{ service.title }} {{service.price | currency }}
-          </mat-checkbox>
+            {{ service.title }} {{service.price | currency }}</mat-checkbox>
           <br>
         </div>
       </div>
