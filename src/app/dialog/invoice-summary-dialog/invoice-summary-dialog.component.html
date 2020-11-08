@@ -1,5 +1,5 @@
 <h2 style="text-align: center;" mat-dialog-title>
-  {{ invoice.userName }} please confirm your order</h2>
+  {{ invoice.userName }}, please confirm your order</h2>
 
   <div mat-dialog-content>
     <h3>Order date: {{ invoice.orderDate | date }}</h3>
@@ -10,7 +10,7 @@
     <div *ngFor="let lineItem of invoice.lineItems">
       <mat-list>
         <mat-list-item>
-          {{ lineItem.title }};
+          {{ lineItem.title }}
           <div fxFlex></div>
           {{ lineItem.price | currency }}
         </mat-list-item>

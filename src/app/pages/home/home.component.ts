@@ -43,8 +43,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       parts: [null, Validators.compose([Validators.required])],
-      labor: [null, Validators.compose([Validators.required])],
-      alternator: [null, null]
+      labor: [null, Validators.compose([Validators.required])]
     });
   }
 
