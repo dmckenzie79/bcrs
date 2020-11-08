@@ -15,7 +15,7 @@ import { ServiceRepairService } from '../../shared/services/service-repair.servi
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
-//import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { InvoiceSummaryDialogComponent } from 'src/app/dialog/invoice-summary-dialog/invoice-summary-dialog.component';
 
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient, private cookieService: CookieService, private fb: FormBuilder, private dialog: MatDialog, private router: Router,
               private serviceRepairService: ServiceRepairService, private invoiceService: InvoiceService) {
                 //get username
-                this.userName = this.cookieService.get('sessionuser');
+                this.userName = this.cookieService.get('session_user');
                 //get repair items
                 this.services = this.serviceRepairService.getServiceRepairItems();
               }
