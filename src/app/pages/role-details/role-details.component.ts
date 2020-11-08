@@ -20,9 +20,45 @@ import { Role } from '../../shared/interfaces/role.interface';
 })
 export class RoleDetailsComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+  role: Role;
+  roleId: string;
+
+  constructor(private fb: FormBuilder, private router: Router, private RoleService: RoleService, private route: ActivatedRoute) {
+    this.roleId = this.route.snapshot.paramMap.get('roleId');
+
+    //call findrole api and pass in role id
+    this.RoleService.findRoleById(this.roleId).subscribe(res => {
+      this.role = res['data'];
+    }, err => {
+      console.log(err);
+    }, () => {
+      this.form.controls['text'].setValue(this.role.text);
+    })
+   }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      text: [null, Validators.compose([Validators.required])]
+    });
+  }
+
+  //save updated role
+  save() {
+    const updatedRole = {
+      text: this.form.controls['text'].value
+    } as Role;
+
+    this.RoleService.updateRole(this.roleId, updatedRole).subscribe(res => {
+      this.router.navigate(['/roles']);
+    }, err => {
+      console.log(err);
+    })
+  }
+
+  //cancel updated role
+  cancel() {
+    this.router.navigate(['/roles']);
   }
 
 }

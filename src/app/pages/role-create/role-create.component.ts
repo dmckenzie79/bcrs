@@ -19,9 +19,31 @@ import { Role } from '../../shared/interfaces/role.interface';
 })
 export class RoleCreateComponent implements OnInit {
 
-  constructor() { }
+   form: FormGroup;
+
+  constructor(private fb: FormBuilder, private router: Router, private RoleService: RoleService) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      text: [null, Validators.compose([Validators.required])]
+    });
   }
 
+  //create new role
+  create() {
+    const newRole = {
+      text: this.form.controls['text'].value
+    } as Role
+
+    this.RoleService.createRole(newRole).subscribe(res => {
+      this.router.navigate(['/roles']);
+    }, err => {
+      console.log(err);
+    })
+  }
+
+  //cancel role creation
+  cancel() {
+    this.router.navigate(['/roles']);
+  }
 }
