@@ -57,8 +57,6 @@ import { RoleListComponent } from './pages/role-list/role-list.component';
 import { RoleDetailsComponent } from './pages/role-details/role-details.component';
 import { RoleCreateComponent } from './pages/role-create/role-create.component';
 
-//import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +85,6 @@ import { RoleCreateComponent } from './pages/role-create/role-create.component';
     RoleDetailsComponent,
     RoleCreateComponent
 
-    //PasswordResetComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +108,7 @@ import { RoleCreateComponent } from './pages/role-create/role-create.component';
     MatSelectModule,
     MatStepperModule,
     MatListModule,
-    ChartModule  ],
+    ChartModule    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true

@@ -26,7 +26,7 @@ router.post('/:userName', async(req, res) => {
   try {
     const userName = req.params.userName;
 
-    //create new unvoice from req body
+    //create new invoice from req body
     const newInvoice = {
       userName: userName,
       lineItems: req.body.lineItems,
