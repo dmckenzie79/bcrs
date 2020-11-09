@@ -32,3 +32,8 @@ mat-card-subtitle {
 mat-form-field {
   width: 40%;
 }
+
+.text-warning {
+  text-align: center;
+  color: red;
+}
