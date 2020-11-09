@@ -8,6 +8,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService} from 'ngx-cookie-service'
+import { RoleService } from '../services/role.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-base-layout',
@@ -18,9 +20,24 @@ export class BaseLayoutComponent implements OnInit {
 
   year: number = Date.now();
 
-  constructor(private cookieService: CookieService, private router: Router) { }
+  constructor(private cookieService: CookieService, private router: Router, private roleService: RoleService) { }
 
   ngOnInit(): void {
+  }
+
+  role() {
+    this.roleService.findUserRole(this.cookieService.get('session_user')).pipe(map(res =>
+      {
+        if (res['data'].role === 'admin')
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      ))
   }
 
   signOut() {
