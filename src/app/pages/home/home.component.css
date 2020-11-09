@@ -39,4 +39,11 @@
      margin-right: 5%;
    }
 
+   .text-warning {
+    text-align: center;
+    color: red;
+    font-size: 1em;
+    transition: 1s linear all;
+  }
+
 
