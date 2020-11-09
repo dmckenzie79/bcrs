@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   userName: string;
   services: ServiceRepairItem[];
   lineItems: LineItem[];
-  message: string;
+  //message: string;
 
   constructor(private http: HttpClient, private cookieService: CookieService, private fb: FormBuilder, private dialog: MatDialog, private router: Router,
               private serviceRepairService: ServiceRepairService, private invoiceService: InvoiceService) {
