@@ -2,7 +2,7 @@
   <mat-card class="mat-elevation-z8">
     <mat-card-title>Role Configuration</mat-card-title>
     <mat-card-subtitle>
-      <button fxFlex mat-button routerLink="/roles/create/new" color="accent">Create</button>
+      <button fxFlex mat-button routerLink="/roles/create/new" color="accent">Create Role</button>
     </mat-card-subtitle>
 
     <br />
@@ -25,7 +25,7 @@
             <mat-icon color="accent">edit</mat-icon>
             </button>
 
-            <button mat-icon-button (click)="delete(element._id)">
+            <button mat-icon-button (click)="delete(element._id, element.text)">
               <mat-icon color="accent">delete</mat-icon>
               </button>
           </td>

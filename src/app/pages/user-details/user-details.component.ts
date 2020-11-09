@@ -27,19 +27,19 @@ export class UserDetailsComponent implements OnInit {
   form: FormGroup;
   roles: Role[];
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder, private router: Router,
-              private userService: UserService, private roleService: RoleService) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder, private router: Router, private userService: UserService, private roleService: RoleService) {
     this.userId = this.route.snapshot.paramMap.get('userId');
 
     this.userService.findUserById(this.userId).subscribe(res => {
       this.user = res['data'];
+      console.log(this.user);
     }, err => {
       console.log(err)
     }, () => {
       this.form.controls.firstName.setValue(this.user.firstName);
       this.form.controls.lastName.setValue(this.user.lastName);
       this.form.controls.phoneNumber.setValue(this.user.phoneNumber);
-      this.form.controls.address.setValue(this.user.phoneNumber);
+      this.form.controls.address.setValue(this.user.address);
       this.form.controls.email.setValue(this.user.email);
       this.form.controls.role.setValue(this.user.role['role']);
 

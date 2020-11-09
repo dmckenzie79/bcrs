@@ -8,8 +8,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
-import { RoleService } from 'src/app/shared/services/role.service';
+import { RoleService } from '../../shared/services/role.service';
 import { Role } from '../../shared/interfaces/role.interface';
 import { DeleteRecordDialogComponent } from 'src/app/shared/delete-record-dialog/delete-record-dialog.component';
 
@@ -32,15 +31,15 @@ export class RoleListComponent implements OnInit {
     })
    }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   delete(roleId, text) {
     const dialogRef = this.dialog.open(DeleteRecordDialogComponent, {
       data: {
         roleId,
-        dialogHeader: 'Delete Dialog',
-        dialogBody: 'Are you sure you want to delete role: ${text}?'
+        dialogHeader: 'Delete Record Dialog',
+        dialogBody: `Are you sure you want to delete role: ${text}?`
       },
       disableClose: true,
       width: '800px'

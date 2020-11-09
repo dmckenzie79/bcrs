@@ -15,7 +15,7 @@ const BaseResponse = require('../services/base-response');
 const ErrorResponse = require('../services/error-response');
 const User = require('../models/user');
 const selectedSecurityQuestions = require('../models/selected-security-question');
-
+const Role = require('../models/role');
 const router= express.Router();
 const saltRounds = 10; //default salt rounds for hashing algorithm
 
@@ -66,7 +66,8 @@ router.get('/', async(req, res) => {
       } else {
 
         console.log(user);
-        res.json(user);
+        const findUserByIdSuccessResponse = new BaseResponse('200', 'User Found', user)
+        res.json(findUserByIdSuccessResponse.toObject());
       }
     });
   } catch (e) {

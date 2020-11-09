@@ -30,6 +30,7 @@ export class RoleDetailsComponent implements OnInit {
     //call findrole api and pass in role id
     this.RoleService.findRoleById(this.roleId).subscribe(res => {
       this.role = res['data'];
+      console.log(this.role)
     }, err => {
       console.log(err);
     }, () => {
