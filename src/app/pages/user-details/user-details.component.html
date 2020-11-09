@@ -20,7 +20,7 @@
             <mat-select [formControl]="form.controls['role']"
                         placeholder="Role">
               <mat-option *ngFor="let role of roles"
-                          value="role.text">
+                          [value]="role.text">
                           {{ role.text }}
               </mat-option>
             </mat-select>

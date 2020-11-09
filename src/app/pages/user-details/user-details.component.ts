@@ -39,7 +39,7 @@ export class UserDetailsComponent implements OnInit {
       this.form.controls.firstName.setValue(this.user.firstName);
       this.form.controls.lastName.setValue(this.user.lastName);
       this.form.controls.phoneNumber.setValue(this.user.phoneNumber);
-      this.form.controls.address.setValue(this.user.phoneNumber);
+      this.form.controls.address.setValue(this.user.address);
       this.form.controls.email.setValue(this.user.email);
       this.form.controls.role.setValue(this.user.role['role']);
 
