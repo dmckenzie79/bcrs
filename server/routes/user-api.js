@@ -66,7 +66,8 @@ router.get('/', async(req, res) => {
       } else {
 
         console.log(user);
-        res.json(user);
+        const findUserByIdSuccessResponse = new BaseResponse('200', 'User Found', user)
+        res.json(findUserByIdSuccessResponse.toObject());
       }
     });
   } catch (e) {

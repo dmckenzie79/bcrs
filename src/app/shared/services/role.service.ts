@@ -18,27 +18,27 @@ export class RoleService {
 
   constructor(private http: HttpClient) { }
 
-  findAllRoles():Observable<any> {
+  findAllRoles(): Observable<any> {
     return this.http.get('/api/roles');
   }
 
-  findRoleById(roleId: string):Observable<any> {
+  findRoleById(roleId: string): Observable<any> {
     return this.http.get('/api/roles/' + roleId);
   }
 
-  createRole(role: Role):Observable<any> {
+  createRole(role: Role): Observable<any> {
     return this.http.post('/api/roles/', {
       text: role.text
     });
   }
 
-  updateRole(roleId: string, role: Role):Observable<any> {
+  updateRole(roleId: string, role: Role): Observable<any> {
     return this.http.put('/api/roles/' + roleId, {
       text: role.text
     });
   }
 
-  deleteRole(roleId: string):Observable<any> {
+  deleteRole(roleId: string): Observable<any> {
     return this.http.delete('/api/roles/'+ roleId);
     }
 
