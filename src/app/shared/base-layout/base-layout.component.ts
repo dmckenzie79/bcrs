@@ -25,21 +25,6 @@ export class BaseLayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  role() {
-    this.roleService.findUserRole(this.cookieService.get('session_user')).pipe(map(res =>
-      {
-        if (res['data'].role === 'admin')
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      ))
-  }
-
   signOut() {
     this.cookieService.deleteAll();
     this.router.navigate(['/session/sign-in'])
