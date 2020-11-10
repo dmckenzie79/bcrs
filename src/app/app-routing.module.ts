@@ -10,7 +10,7 @@ import { BaseLayoutComponent } from './shared/base-layout/base-layout.component'
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
-import { SessionGuard } from './shared/guard/session.guard';
+import { SessionGuard } from './shared/guards/session.guard';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SecurityQuestionListComponent } from './pages/security-question-list/security-question-list.component';
 import { SecurityQuestionDetailsComponent } from './pages/security-question-details/security-question-details.component';
@@ -26,6 +26,12 @@ import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-qu
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
 import { ServerErrorComponent } from './pages/server-error/server-error.component';
+import { RoleGuard } from './shared/guards/role.guard';
+import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
+import { RoleListComponent } from './pages/role-list/role-list.component';
+import { RoleDetailsComponent } from './pages/role-details/role-details.component';
+import { RoleCreateComponent } from './pages/role-create/role-create.component';
+
 //import { PasswordResetComponent } from './pages/password-reset/password-reset.component'
 
 const routes: Routes = [
@@ -36,6 +42,11 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'purchase-graph',
+        component: PurchasesByServiceGraphComponent,
+        canActivate: [RoleGuard]
       },
       {
         path: 'security-questions',
@@ -68,7 +79,20 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent
+      },
+      {
+        path: 'roles',
+        component: RoleListComponent
+      },
+      {
+        path: 'roles/create/new',
+        component: RoleCreateComponent
+      },
+      {
+        path: 'roles/:roleId',
+        component: RoleDetailsComponent
       }
+
     ],
     canActivate: [SessionGuard]
   },

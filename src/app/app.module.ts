@@ -22,7 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SessionGuard } from './shared/guard/session.guard';
+import { SessionGuard } from './shared/guards/session.guard';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CookieService } from 'ngx-cookie-service';
@@ -50,7 +50,14 @@ import { RegisterComponent } from './pages/register/register.component';
 import { VerifySecurityQuestionsFormComponent } from './pages/verify-security-questions-form/verify-security-questions-form.component';
 import { VerifyUsernameFormComponent } from './pages/verify-username-form/verify-username-form.component';
 import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-password-form.component';
-//import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { ChartModule } from 'primeng/chart';
+import { InvoiceSummaryDialogComponent } from './dialog/invoice-summary-dialog/invoice-summary-dialog.component';
+import { PurchasesByServiceGraphComponent } from './pages/purchases-by-service-graph/purchases-by-service-graph.component';
+import { RoleListComponent } from './pages/role-list/role-list.component';
+import { RoleDetailsComponent } from './pages/role-details/role-details.component';
+import { RoleCreateComponent } from './pages/role-create/role-create.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -74,7 +81,12 @@ import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-pa
     VerifySecurityQuestionsFormComponent,
     VerifyUsernameFormComponent,
     ResetPasswordFormComponent,
-    //PasswordResetComponent
+    InvoiceSummaryDialogComponent,
+    PurchasesByServiceGraphComponent,
+    RoleListComponent,
+    RoleDetailsComponent,
+    RoleCreateComponent
+
   ],
   imports: [
     BrowserModule,
@@ -97,10 +109,10 @@ import { ResetPasswordFormComponent } from './pages/reset-password-form/reset-pa
     MatTableModule,
     MatSelectModule,
     MatStepperModule,
-    MatListModule
-
-
-  ],
+    MatListModule,
+    ChartModule ,
+    MatCheckboxModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true

@@ -8,6 +8,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService} from 'ngx-cookie-service'
+import { RoleService } from '../services/role.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-base-layout',
@@ -17,11 +19,15 @@ import { CookieService} from 'ngx-cookie-service'
 export class BaseLayoutComponent implements OnInit {
 
   year: number = Date.now();
+  sessionUser: string;
 
-  constructor(private cookieService: CookieService, private router: Router) { }
+  constructor(private cookieService: CookieService, private router: Router, private roleService: RoleService) {
+    this.sessionUser = this.cookieService.get('session_user');
+   }
 
   ngOnInit(): void {
   }
+
 
   signOut() {
     this.cookieService.deleteAll();

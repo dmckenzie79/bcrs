@@ -1,45 +1,20 @@
-.bar {
-  background-color: #80DEEA;
-  height: 80px;
-  margin-bottom: 5%;
+mat-card {
+  width: 35%;
+  margin: auto;
+  margin-top: 5%;
 }
 
-.numeric-warning, .text-warning {
-  margin: 10% auto;
-  max-width: 500px;
-  height: 50px;
-  color: red;
+mat-card-title {
   text-align: center;
 }
 
-.sign-in-container {
-  margin: 10% auto;
-  width: 600px;
-}
-
-.sign-in-container > mat-card-title, mat-card-subtitle, .form {
+mat-card-content {
   text-align: center;
-  padding: 2%;
 }
 
-.input {
-  width: 200px;
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 10%;
-  border-radius: 5px;
-}
-
-.submit {
-  background-color: #B39DDB;
-  margin-bottom: 30px;
-  font-size: 18px;
-  width: 120px;
-}
-
-.label {
-  font-size: 20px;
-  padding-right: 5%;
+mat-card-subtitle {
+  text-align: center;
+  margin: auto;
 }
 
 .password a {
@@ -50,7 +25,15 @@
 
 .account a {
   color: #80DEEA;
-  font-size: 18px;
-  font-weight: 500;
-  background-color: lavender;
+  font-size: 24px;
+  font-weight: 500;;
+}
+
+mat-form-field {
+  width: 40%;
+}
+
+.text-warning {
+  text-align: center;
+  color: red;
 }

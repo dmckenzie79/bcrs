@@ -81,9 +81,9 @@ router.get('/:id', async(req, res) => {
 
         res.status(500).send(mongoDbErrorResponse.toObject());
       } else {
-
         console.log(question);
-        res.json(question);
+        const findSecurityQuestionByIdSuccessResponse = new BaseResponse ('200', 'Question Found', question)
+        res.json(findSecurityQuestionByIdSuccessResponse.toObject());
       }
     });
   } catch (e) {

@@ -15,4 +15,5 @@
    phoneNumber: string;
    address: string;
    email: string;
+   role: string;
  }

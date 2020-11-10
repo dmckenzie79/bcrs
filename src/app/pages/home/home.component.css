@@ -1,14 +1,49 @@
-.main-welcome {
-    margin-top: 30px;
-  }
-  
-  .title {
+
+  h1 {
     text-align: center;
-    font-weight: lighter;
+    margin-top: 5%;
+    margin-left: 45%;
+    font-size: 1.5em;
+    margin-bottom: 5%;
   }
-  
-  .subtitle {
+
+  .image {
+    max-width: 30px;
+    max-height: 30px;
+  }
+
+  h4 {
     text-align: center;
-    font-size: 14px;
+    font-size: 1.5em;
   }
-  
+
+   .checkbox {
+     margin: 30%;
+     line-height: 50px;
+     font-size: 1.2em;
+   }
+
+   .bar {
+    height: 60px;
+    background-color: #80DEEA;
+    margin: 2%;
+  }
+
+  .input {
+    margin-top: 15%;
+    margin-left: 20%;
+    font-size: 1.2em;
+  }
+
+   .buttons {
+     margin-right: 5%;
+   }
+
+   .text-warning {
+    text-align: center;
+    color: red;
+    font-size: 1em;
+    transition: 1s linear all;
+  }
+
+

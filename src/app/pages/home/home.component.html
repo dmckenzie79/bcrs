@@ -1,8 +1,68 @@
-<div fxLayout="column" class="main-welcome">
+<div fxLayout="row">
   <h1 class="title">
-    Welcome to WEB 450's - Bob's Computer Repair Shop <br />
-    <span class="subtitle">
-      Pay close attention to the requirements, double and triple check the files for code attribution, and do not wait unitl the last minute to begin working on each item.
-    </span>
+    <img src="../../../assets/gear1.svg" class="image">
+    Services & Repairs
+    <img src="../../../assets/gear1.svg" class="image">
   </h1>
+</div>
+
+<!-- <div *ngIf="message" class ="text-warning">
+  {{ message }}
+</div> -->
+
+<div fxLayout="row">
+<mat-card style="width: 50%; height: 500px; margin: 0 auto;" class="mat-elevation-z8">
+  <form #serviceRepairForm="ngForm" (ngSubmit)="submit(serviceRepairForm.value); serviceRepairForm.reset();">
+    <mat-card-content>
+
+      <!--checkboxes for standard services-->
+      <div fxFlex>
+        <h4>Services</h4>
+        <div ngModelGroup="checkGroup" *ngFor="let service of services">
+          <mat-checkbox name="{{ service.id }}" ngModel class="checkbox">
+            {{ service.title }} {{service.price | currency }}
+          </mat-checkbox>
+          <br>
+        </div>
+      </div>
+
+      <mat-divider [vertical]="true" class="divider"></mat-divider>
+<br />
+<br />
+
+      <!--parts and labor for custom service-->
+
+      <!--parts-->
+      <div fxFlex fxLayout="column">
+        <h4>Standard Fees</h4>
+        <mat-form-field style="width: 300px !important;" class="input">
+          <input matInput name="parts" ngModel placeholder="Enter a parts value">
+        </mat-form-field>
+
+
+        <!--labor-->
+
+        <mat-form-field style="width: 300px !important;" class="input">
+          <input matInput name="labor" ngModel placeholder="Enter hours of labor ($50/hour)">
+        </mat-form-field>
+        </div>
+
+    </mat-card-content>
+
+
+
+    <!--form actions-->
+<br />
+<br />
+<br />
+<br />
+
+  <div class="bar">
+    <mat-card-actions align="end" class="buttons">
+      <button mat-raised-button type="reset" color="warn">Cancel</button>
+      <button mat-raised-button color="accent">Submit</button>
+    </mat-card-actions>
+  </div>
+  </form>
+</mat-card>
 </div>

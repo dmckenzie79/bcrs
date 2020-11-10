@@ -6,13 +6,15 @@
       <!-- navbar container -->
       <div class="navbar-container">
         <!-- logo -->
-        <button class="logo" routerLink="/" mat-button>BCRS</button>
-        <button class="navbar-link" routerLink="/" mat-button>Home</button>
-        <button class="navbar-link" routerLink='/about' mat-button>About</button>
-        <button class="navbar-link" routerLink='/contact' mat-button>Contact</button>
-        <button class="navbar-link" routerLink="/users"mat-button>User Configuration</button>
-        <button class="navbar-link" routerLink="/security-questions"mat-button>Security Questions Configuration</button>
-        <button class="navbar-link" mat-button (click)="signOut()">Sign Out</button>
+        <button class="logo" routerLink="/" mat-button><img src="../../../assets/bcrs-logo.png"></button>
+        <button class="navbar-link" routerLink="/" mat-button><mat-icon>home</mat-icon> Home</button>
+        <button class="navbar-link" routerLink='/about' mat-button><mat-icon>face</mat-icon> About</button>
+        <button class="navbar-link" routerLink='/contact' mat-button><mat-icon>contact_page</mat-icon> Contact</button>
+        <button class="navbar-link" routerLink="/users"mat-button><mat-icon>admin_panel_settings</mat-icon> User Configuration</button>
+        <button class="navbar-link" routerLink="/security-questions"mat-button><mat-icon>security</mat-icon> Security Questions Configuration</button>
+        <button class="navbar-link" routerLink="/roles" mat-button><mat-icon>settings</mat-icon> Role Configuration</button>
+        <button *ngIf="sessionUser === 'admin'" class="navbar-link" routerLink="/purchase-graph"mat-button><mat-icon>pie_chart</mat-icon> Purchases Graph</button>
+        <button class="navbar-link" mat-button (click)="signOut()"><mat-icon>close</mat-icon> Sign Out</button>
       </div>
 
     </mat-toolbar>
@@ -35,5 +37,4 @@
       </mat-toolbar>
     </footer>
   </div>
-
 </div>

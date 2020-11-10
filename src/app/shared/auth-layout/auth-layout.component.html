@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<div fxLayout="column">
+
+  <!-- navigation -->
+  <nav fxFlex>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div class='header'>
+          <p style="text-align: center; padding-left: 10%; font-weight: lighter;">
+            Bob's Computer Repair Shop
+            <br>
+            <mat-icon>build</mat-icon>
+          </p>
+      </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </nav>
+
+  <!-- main content -->
+  <div fxFlex>
+    <main class="main-content" fxFlex="100%;">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- footer -->
+  <div fxFlex>
+    <footer class="footer">
+
+    </footer>
+  </div>
+
+</div>
