@@ -13,7 +13,7 @@
         <button class="navbar-link" routerLink="/users"mat-button>User Configuration</button>
         <button class="navbar-link" routerLink="/security-questions"mat-button>Security Questions Configuration</button>
         <button class="navbar-link" routerLink="/roles" mat-button>Role Configuration</button>
-        <button class="navbar-link" routerLink="/purchase-graph"mat-button>Purchases Graph</button>
+        <button *ngIf="sessionUser === 'admin'" class="navbar-link" routerLink="/purchase-graph"mat-button>Purchases Graph</button>
         <button class="navbar-link" mat-button (click)="signOut()">Sign Out</button>
       </div>
 
@@ -37,5 +37,4 @@
       </mat-toolbar>
     </footer>
   </div>
-
 </div>
