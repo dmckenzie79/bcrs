@@ -9,7 +9,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RoleService } from 'src/app/shared/services/role.service';
+import { RoleService } from '../../shared/services/role.service';
 import { Role } from '../../shared/interfaces/role.interface';
 
 @Component({
@@ -21,9 +21,9 @@ export class RoleCreateComponent implements OnInit {
 
    form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private RoleService: RoleService) { }
+  constructor(private fb: FormBuilder, private router: Router, private roleService: RoleService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.form = this.fb.group({
       text: [null, Validators.compose([Validators.required])]
     });
@@ -35,7 +35,7 @@ export class RoleCreateComponent implements OnInit {
       text: this.form.controls['text'].value
     } as Role
 
-    this.RoleService.createRole(newRole).subscribe(res => {
+    this.roleService.createRole(newRole).subscribe(res => {
       this.router.navigate(['/roles']);
     }, err => {
       console.log(err);

@@ -51,7 +51,7 @@ export class UserDetailsComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.form = this.fb.group({
       firstName: [null, Validators.compose([Validators.required])],
       lastName: [null, Validators.compose([Validators.required])],
