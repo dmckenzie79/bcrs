@@ -38,3 +38,11 @@
   .bu-link:hover {
     text-decoration: underline;
   }
+
+  .signOut {
+    float: right;
+  }
+
+  mat-menu {
+    width: 15%;
+  }
