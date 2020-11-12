@@ -136,7 +136,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'session/not-found'
+    redirectTo: 'session/404'
   }
 ];
 
