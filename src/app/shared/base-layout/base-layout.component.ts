@@ -19,10 +19,11 @@ import { map } from 'rxjs/operators';
 export class BaseLayoutComponent implements OnInit {
 
   year: number = Date.now();
-  sessionUser: string;
+  sessionRole: string;
 
   constructor(private cookieService: CookieService, private router: Router, private roleService: RoleService) {
-    this.sessionUser = this.cookieService.get('session_user');
+    this.sessionRole = this.cookieService.get('session_role');
+    console.log(this.sessionRole);
    }
 
   ngOnInit(): void {
