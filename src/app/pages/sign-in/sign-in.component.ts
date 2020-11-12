@@ -50,7 +50,7 @@ export class SignInComponent implements OnInit {
           * User is authenticated and access can to granted
           */
         this.cookieService.set('session_user', res['data'].userName, 1); // set the user name to the cookie, session_user name
-        this.cookieService.set('session_role', res['data'].role.role, 1);
+        this.cookieService.set('session_role', res['data'].role.role, 1); // Set user role to use to hide nav based on role
         this.router.navigate(['/']);
 
         }
